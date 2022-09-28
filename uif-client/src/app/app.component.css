@@ -6,9 +6,13 @@
     width: 100%;
     height: 150px;
     background-image: url('../assets/img/remake-of-jorge-rearte-god-love-hope-humans.jpg');
+    background-color: #00487f;
+    background-blend-mode: luminosity;
+    /* opacity: 0.1; */
+    background-position-y: center;
     margin-top: -20px;
     text-align: center;
-    color: #ffffff;
+    color: #00083f;
     font-size: 40px;
     padding-top: 150px;
 }
