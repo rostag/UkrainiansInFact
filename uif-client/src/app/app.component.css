@@ -2,6 +2,17 @@
     display: block;
 }
 
+.attractor {
+    width: 100%;
+    height: 150px;
+    background-image: url('../assets/img/remake-of-jorge-rearte-god-love-hope-humans.jpg');
+    margin-top: -20px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 40px;
+    padding-top: 150px;
+}
+
 mat-toolbar {
     margin-bottom: 20px;
 }

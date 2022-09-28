@@ -19,12 +19,16 @@ import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskComponent,
-    TaskDialogComponent
+    TaskDialogComponent,
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
