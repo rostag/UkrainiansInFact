@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "arekuni": {
+      "hosting": {
+        "uif-client": [
+          "arekuni"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "arekuni"
+  }
+}

@@ -96,6 +96,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "uif-client:build:production",
+            "firebaseProject": "arekuni",
+            "firebaseHostingSite": "arekuni"
+          }
         }
       }
     }
