@@ -1,0 +1,44 @@
+@use 'uif-palette' as uifp;
+@use '@angular/material' as mat;
+@include mat.core();
+
+// TODO: Resolve style duplication as shown here: https://github.com/angular/components/blob/main/guides/duplicate-theming-styles.md 
+// and remove next line.
+// mat.$theme-ignore-duplication-warnings: true;
+
+$uif-primary: mat.define-palette(uifp.$md-uifblue);
+$uif-accent: mat.define-palette(uifp.$md-uiflightblue);
+
+// The "warn" palette is optional and defaults to red if not specified.
+$uif-warn: mat.define-palette(uifp.$md-uifyellow);
+
+$uif-theme: mat.define-light-theme((
+ color: (
+   primary: $uif-primary,
+   accent: $uif-accent,
+   warn: $uif-warn,
+ )
+));
+
+@include mat.all-component-themes($uif-theme);
+
+// Emit theme-dependent styles for common features used across multiple components.
+// @include mat.core-theme($uif-theme);
+
+// Emit styles for MatButton based on `$uif-theme`. Because the configuration
+// passed to `define-light-theme` omits typography, `button-theme` will not
+// emit any typography styles.
+// @include mat.button-theme($uif-theme);
+
+// Include the theme mixins for other components you use here.
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
