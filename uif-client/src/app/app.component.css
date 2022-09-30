@@ -4,21 +4,26 @@
 
 .attractor {
     width: 100%;
-    height: 150px;
-    background-image: url('../assets/img/remake-of-jorge-rearte-god-love-hope-humans.jpg');
+    height: 250px;
     background-color: #00487f;
-    background-blend-mode: luminosity;
-    /* opacity: 0.1; */
-    background-position-y: center;
-    margin-top: -20px;
+    background-size: cover;
+    background-attachment: fixed;
+    /* background-blend-mode: lighten; */
+    background-position-y: -100px;
+    margin-top: -84px;
     text-align: center;
-    color: #00083f;
+    color: #ffffff;
     font-size: 40px;
-    padding-top: 150px;
+    padding-top: 230px;
+    background-image: url('../assets/img/Rpsti_Ukrainian_country-side_landscape_of_beautiful_valley_with_50397e29-24db-4668-b31f-107d503befd2.jpg');
 }
 
 mat-toolbar {
     margin-bottom: 20px;
+}
+
+.transparent-toolbar {
+    background: transparent;
 }
 
 mat-toolbar>span {
@@ -28,7 +33,7 @@ mat-toolbar>span {
 .content-wrapper {
     max-width: 1400px;
     margin: auto;
-    padding: 1em;
+    padding: 1em 2em;
 }
 
 .container-wrapper {
@@ -70,4 +75,8 @@ app-new-task {
 .item {
     margin-bottom: 10px;
     cursor: pointer;
+}
+
+.spacer {
+    height: 60px;
 }
