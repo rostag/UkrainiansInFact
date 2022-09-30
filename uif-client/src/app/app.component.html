@@ -1,5 +1,4 @@
 <mat-toolbar color="primary" class="transparent-toolbar">
-  <mat-icon class="material-icons-outlined">volunteer_activism</mat-icon>
   <button mat-button [routerLink]="['/']">Головна</button>
   <button mat-button [routerLink]="['/stories']">Особисті історії</button>
   <button mat-button [routerLink]="['/tasks']">Поточні задачі</button>
@@ -16,63 +15,6 @@
   <app-about></app-about>
 
   <div class="spacer"></div>
-
-  <h1>Поточні задачі</h1>
-
-  <p>Задачі можна додавати, редагувати і переміщати між колонками "Зробити", "В роботі" та "Зроблено"</p>
-  
-  <div class="container-wrapper">
-
-      <div class="container">
-        <h2>Зробити</h2>
-        <mat-card
-          cdkDropList
-          id="todo"
-          #todoList="cdkDropList"
-          [cdkDropListData]="todo | async"
-          [cdkDropListConnectedTo]="[doneList, inProgressList]"
-          (cdkDropListDropped)="drop($event)"
-          class="list">
-          <p class="empty-label" *ngIf="(todo | async)?.length === 0">Список пустий</p>
-          <app-task (edit)="editTask('todo', $event)" *ngFor="let task of todo | async" cdkDrag [task]="task"></app-task>
-        </mat-card>
-      </div>
-
-      <div class="container">
-        <h2>В роботі</h2>
-        <mat-card
-          cdkDropList
-          id="inProgress"
-          #inProgressList="cdkDropList"
-          [cdkDropListData]="inProgress | async"
-          [cdkDropListConnectedTo]="[todoList, doneList]"
-          (cdkDropListDropped)="drop($event)"
-          class="list">
-          <p class="empty-label" *ngIf="(inProgress | async)?.length === 0">Список пустий</p>
-          <app-task (edit)="editTask('inProgress', $event)" *ngFor="let task of inProgress | async" cdkDrag [task]="task"></app-task>
-        </mat-card>
-      </div>
-
-      <div class="container">
-        <h2>Зроблено</h2>
-        <mat-card
-          cdkDropList
-          id="done"
-          #doneList="cdkDropList"
-          [cdkDropListData]="done | async"
-          [cdkDropListConnectedTo]="[todoList, inProgressList]"
-          (cdkDropListDropped)="drop($event)"
-          class="list">
-          <p class="empty-label" *ngIf="(done | async)?.length === 0">Список пустий</p>
-          <app-task (edit)="editTask('done', $event)" *ngFor="let task of done | async" cdkDrag [task]="task"></app-task>
-        </mat-card>
-      </div>
-
-    </div>
-
-    <button (click)="newTask()" mat-button mat-flat-button color="primary">
-      <mat-icon>add</mat-icon>Додати задачу
-    </button>  
 
 </div>
 

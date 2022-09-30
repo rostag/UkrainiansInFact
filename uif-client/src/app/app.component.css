@@ -18,63 +18,15 @@
     background-image: url('../assets/img/Rpsti_Ukrainian_country-side_landscape_of_beautiful_valley_with_50397e29-24db-4668-b31f-107d503befd2.jpg');
 }
 
-mat-toolbar {
-    margin-bottom: 20px;
-}
-
 .transparent-toolbar {
+    margin-bottom: 20px;
     background: transparent;
-}
-
-mat-toolbar>span {
-    margin-left: 10px;
 }
 
 .content-wrapper {
     max-width: 1400px;
     margin: auto;
     padding: 1em 2em;
-}
-
-.container-wrapper {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 1em;
-}
-
-.container {
-    width: 400px;
-    margin: 0 25px 25px 0;
-}
-
-.list {
-    border: solid 1px #ccc;
-    min-height: 60px;
-    border-radius: 4px;
-}
-
-app-new-task {
-    margin-bottom: 30px;
-}
-
-.empty-label {
-    font-size: 2em;
-    padding-top: 10px;
-    text-align: center;
-    opacity: 0.2;
-}
-
-.cdk-drag-animating {
-    transition: transform 250ms;
-}
-
-.cdk-drag-placeholder {
-    opacity: 0;
-}
-
-.item {
-    margin-bottom: 10px;
-    cursor: pointer;
 }
 
 .spacer {
