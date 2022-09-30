@@ -1,0 +1,33 @@
+<div class="displayTable">
+    <div class="displayTableCell">
+      <div class="authBlock">
+        <h3>Увійти</h3>
+        <div class="formGroup">
+          <input type="text" class="formControl" placeholder="email" #userName required>
+        </div>
+        <div class="formGroup">
+          <input type="password" class="formControl" placeholder="пароль" #userPassword required>
+        </div>
+        <!-- Calling signIn Api from AuthService -->
+        <div class="formGroup">
+          <input type="button" class="btn btnPrimary" value="Увійти" (click)="authService.signIn(userName.value, userPassword.value)">
+        </div>
+        <div class="formGroup">
+          <span class="or"><span class="orInner">або</span></span>
+        </div>
+        <!-- Calling googleAuth Api from AuthService -->
+        <div class="formGroup">
+          <button type="button" class="btn googleBtn" (click)="authService.googleAuth()">
+            Увійти з обліковим записом Google
+          </button>
+        </div>
+        <div class="forgotPassword">
+          <a routerLink="/auth/forgot-password">Забув пароль?</a>
+        </div>
+      </div>
+      <div class="redirectToLogin">
+        <a routerLink="/auth/sign-up">Реєстрація</a>
+      </div>
+    </div>
+  </div>
+  

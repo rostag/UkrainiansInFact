@@ -18,3 +18,6 @@ ng g c modules/not-found/components/not-found
 
 ng g m --routing modules/main && ng g c modules/main/components/main
 ng g m --routing modules/main/modules/notes && ng g c modules/main/modules/notes/components/notes
+
+ng g c modules/auth/components/forgot-password -m=modules/auth --dry-run
+ng g c modules/auth/components/verify-email -m=modules/auth --dry-run
