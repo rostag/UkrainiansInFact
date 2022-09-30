@@ -13,7 +13,7 @@ ng g c modules/auth/modules/sign-in/components/sign-in
 ng g m --routing modules/auth/modules/sign-up
 ng g c modules/auth/modules/sign-up/components/sign-up
 
-ng g m --routing modules/not-found && 
+ng g m --routing modules/not-found &&
 ng g c modules/not-found/components/not-found
 
 ng g m --routing modules/main && ng g c modules/main/components/main
