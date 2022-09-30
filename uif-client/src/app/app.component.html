@@ -1,13 +1,17 @@
 <mat-toolbar color="primary" class="transparent-toolbar">
   <mat-icon class="material-icons-outlined">volunteer_activism</mat-icon>
-  <span>Фактичні Українці</span>
+  <button mat-button [routerLink]="['/']">Головна</button>
+  <button mat-button [routerLink]="['/stories']">Особисті історії</button>
+  <button mat-button [routerLink]="['/tasks']">Поточні задачі</button>
 </mat-toolbar>
 
-<div class="attractor">Зберегти кожного і кожну</div>
+<div class="attractor">Фактичні Українці</div>
 
 <div class="content-wrapper">
 
   <div class="spacer"></div>
+
+  <router-outlet></router-outlet>
   
   <app-about></app-about>
 
