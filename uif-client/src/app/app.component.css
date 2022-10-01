@@ -29,6 +29,10 @@
     padding: 1em 2em;
 }
 
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
 .spacer {
     height: 60px;
 }

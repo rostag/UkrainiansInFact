@@ -1,0 +1,41 @@
+<div class="control-container">
+    <mat-form-field>
+        <mat-label>Заголовок</mat-label>
+        <input matInput cdkFocusInitial [(ngModel)]="data.story.title" />
+    </mat-form-field>
+</div>
+<div class="control-container">
+    <mat-form-field class="text-container">
+        <mat-label>Історія</mat-label>
+        <textarea matInput [(ngModel)]="data.story.text" class="text"></textarea>
+    </mat-form-field>
+</div>
+<div class="control-container">
+    <mat-form-field>
+        <mat-label>Шлях до зображення</mat-label>
+        <input matInput [(ngModel)]="data.story.image" />
+    </mat-form-field>
+</div>
+<div class="control-container">
+    <mat-form-field>
+        <mat-label>Профіль у Facebook</mat-label>
+        <input matInput [(ngModel)]="data.story.facebookProfile" />
+    </mat-form-field>
+</div>
+<div class="control-container">
+    <mat-form-field>
+        <mat-label>Профіль у Instagram</mat-label>
+        <input matInput [(ngModel)]="data.story.instagramProfile" />
+    </mat-form-field>
+</div>
+<div class="control-container">
+    <mat-form-field>
+        <mat-label>Код для вставки з інстаграму</mat-label>
+        <input matInput [(ngModel)]="data.story.instagramEmbedCode" />
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button mat-flat-button color="primary" [mat-dialog-close]="{ story: data.story }">OK</button>
+    <button mat-button (click)="cancel()">Відміна</button>
+</div>

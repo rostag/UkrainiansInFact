@@ -21,6 +21,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { AuthGuard } from './services';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -45,7 +47,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     provideStorage(() => getStorage()),
   ],
   providers: [
-    ScreenTrackingService, UserTrackingService
+    ScreenTrackingService, UserTrackingService, AuthGuard
   ],
   bootstrap: [AppComponent]
 })
