@@ -7,11 +7,11 @@
         
         <!-- Calling sendVerificationMail() method using authService Api -->
         <div>
-          <button type="button" class="btn btnPrimary" (click)="authService.sendVerificationMail()">
+          <button mat-stroked-button colors="primary" (click)="authService.sendVerificationMail()">
             Надіслати Email для підтвердження реєстрації
           </button>
         </div>
       </div>
-      <div class="redirectToLogin">
-        <span class="redirect" routerLink="/sign-in">Вхід</span>
+      <div class="login">
+        <a class="redirect" routerLink="/auth/sign-in">Вхід</a>
       </div>
