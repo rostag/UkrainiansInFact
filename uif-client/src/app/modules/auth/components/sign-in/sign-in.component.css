@@ -1,0 +1,18 @@
+.form-fields {
+    max-width: 300px;
+}
+
+.form-field {
+    display: block;
+}
+
+.flex-row {
+    display: flex;
+    max-width: 300px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.additional-actions {
+    margin-top: 1em;
+}

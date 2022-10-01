@@ -47,6 +47,7 @@ export class AuthService {
         window.alert(error.message);
       });
   }
+
   // Sign up with email/password
   signUp(email: string, password: string) {
     return this.afAuth
@@ -66,15 +67,15 @@ export class AuthService {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['verify-email-address']);
+        this.router.navigate(['auth', 'verify-email-address']);
       });
   }
-  // Reset Forggot password
+  // Reset Forgotnen password
   forgotPassword(passwordResetEmail: string) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
+        window.alert('Електронний лист для зміни пароля надіслано, перевірте папку "Вхідні"');
       })
       .catch((error) => {
         window.alert(error);

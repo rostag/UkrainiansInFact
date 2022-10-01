@@ -8,10 +8,9 @@
       <img class="img-thumbnail"
         src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}" alt="{{user.displayName}}">
       <div class="media-body">
-        <h1>{{user.displayName || 'Username'}}</h1>
-        <p>Email: {{user.email}}</p>
-        <p>Email Verified: {{user.emailVerified}}</p>
-        <p><a href="#" (click)="authService.signOut()">Log Out</a></p>
+        <h2>{{user.displayName || 'Користувачеім’я'}}</h2>
+        <p>Email: {{user.email}} ({{user.emailVerified ? 'перевірено' : 'не перевірено'}})</p>
+        <p><a href="#" (click)="authService.signOut()">Вийти</a></p>
       </div>
     </div>
   </div>
