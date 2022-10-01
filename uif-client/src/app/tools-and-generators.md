@@ -1,6 +1,7 @@
 # Tools and Generators
 
 <https://realfavicongenerator.net/>
+<https://realfavicongenerator.net/favicon_checker?protocol=https&site=ukrainiansinfact.org.ua#.YzdtQOxBygw>
 
 ## Modules creation history
 

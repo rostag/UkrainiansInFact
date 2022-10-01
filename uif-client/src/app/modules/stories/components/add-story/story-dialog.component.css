@@ -1,0 +1,13 @@
+
+.control-container {
+    width: 500px;
+}
+
+.text-container {
+    width: 100%;
+}
+
+.text {
+    min-height: 200px;
+    width: 100%;
+}

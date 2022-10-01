@@ -27,12 +27,10 @@ export class TasksComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private store: AngularFirestore) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   newTask(): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
-      width: '270px',
       data: {
         task: {},
       },
@@ -49,7 +47,6 @@ export class TasksComponent implements OnInit {
 
   editTask(list: 'done' | 'todo' | 'inProgress', task: Task): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
-      width: '270px',
       data: {
         task,
         enableDelete: true,
