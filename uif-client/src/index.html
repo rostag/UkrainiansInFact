@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <title>Фактичні Українці</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Favicons -->
   <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
   <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon/apple-touch-icon.png">
@@ -22,35 +21,173 @@
 
 <body>
   <style>
+    html {
+      box-sizing: border-box;
+      font-size: 16px;
+      line-height: 1.8rem;
+      font-family: Georgia, "Times New Roman", Times, serif;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+      font-weight: normal;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
     .content-wrap {
-      font-family: Arial, Helvetica, sans-serif;
-      max-width: 800px;
+      max-width: 820px;
       margin-left: auto;
       margin-right: auto;
     }
+
+    .uif-footer-wrap,
+    .uif-header-wrap {
+      text-align: center;
+    }
+
+    /* attractor */
+    .uif-footer-wrap {
+      margin: 3rem -15rem 0;
+      background-color: #00487f;
+      background-size: cover;
+      background-attachment: fixed;
+      /* background-blend-mode: lighten; */
+      background-position-y: -1px;
+      text-align: center;
+      font-size: 1rem;
+      padding-top: 370px;
+      color: #fff;
+      background-image: url(../assets/img/Rpsti_Ukrainian_country-side_landscape_of_beautiful_valley_with_50397e29-24db-4668-b31f-107d503befd2.jpg);
+      background-repeat: no-repeat;
+      padding-bottom: 1rem;
+    }
+
+    .uif-footer-wrap .uif-logo,
+    .uif-header-wrap .uif-logo {
+      width: 100px;
+      margin-right: auto;
+      margin-left: auto;
+      height: 100px;
+      border-radius: 50px;
+      background-image: url(../../assets/img/uif-logo-smaller.jpg);
+    }
+
+
+    .a-logo {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .go-site-btn {
+      text-decoration: none;
+      display: inline-block;
+      padding: 1rem;
+      color: rgb(194, 234, 248);
+      width: auto;
+      margin-right: auto;
+      margin-left: auto;
+      border-radius: 35px;
+      margin-bottom: 1rem;
+    }
+    
+    .go-site-btn:hover {
+      background-color: deepskyblue;
+      color: #000;
+    }
+
+    /* Summary Wrap */
+    .summary-wrap {
+      min-height: 195px;
+      display: flex;
+      align-items: flex-start;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: 1rem 1rem 0rem;
+      margin: 3rem 0;
+      text-decoration: none;
+      color: #111;
+      border-radius: 1.5rem;
+    }
+
+    .summary-wrap:hover {
+      background-color: #eee;
+      cursor: pointer;
+    }
+
+    .summary-wrap img {
+      width: 160px;
+      height: 160px;
+      margin-right: 1rem;
+    }
+
+    .summary-wrap h2 {
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 0.7rem;
+    }
+
+    .summary-wrap p {
+      margin-top: 0.1rem;
+      line-height: 1.5rem;
+    }
+
+    .text-wrap {
+      margin: 3rem 0;
+    }
+    
+    .text-wrap h2, 
+    .text-wrap h3,
+    .text-wrap h4 {
+      font-weight: bold;
+    }
+
+    .text-small {
+      color: #777;
+      font-size: 0.8rem;
+      text-align: right;
+    }
+
+    /* End Summary Wrap */
+    
   </style>
   <div class="content-wrap">
-    <h1>Фактичні Українці</h1>
-    <div class="">
-      <p class="text">Примножувати українство як ідею невпинного руху до гідності, волі та людяності.</p>
-      <p class="text">Зараз ми привертаємо увагу Президента до українців, які фактично є громадянами, але мають проблеми
-        з документальним підтвердженням свого фактичного громадянства. Тому ми закликаємо <a class="link"
+    <div class="content">
+      <div class="uif-header-wrap">
+        <div class="uif-logo"></div>
+        <h1>Фактичні Українці</h1>
+      </div>
+      
+      <p class="text">Ті, що довели своє громадянство 
+        роками роботи й служіння нашій громаді. Вони часто мають проблеми
+        з документальним підтвердженням свого статусу. Тому ми привертаємо увагу Президента України до цієї проблеми. Для цього закликаємо <a class="link"
           href="https://petition.president.gov.ua/petition/157298" target="_blank"
-          onclick="logUIFAEvent('goto_petition_top')">підписати Петицію до Президента</a> і поширити її.</p>
+          onclick="gotoUIFPetition('from_top_link')">підписати і поширити Петицію №157298</a>. Ось її зміст стисло:</p>
+  
+          <!-- SUMMARY TOP -->
+          <a class="summary-wrap" onclick="gotoUIFPetition('from_top_banner')" href="https://petition.president.gov.ua/petition/157298" target="_blank">
+            <img src="https://petition.president.gov.ua/i/gerb.svg" >
+            <div>
+              <h2>Петиція до Президента України №157298</h2>
+              <p>Просимо увести спеціальну процедуру для подання документів на дозвіл на імміграцію, посвідку на проживання або громадянство України, маючи
+                на руках закордонні паспорти, термін дії яких закінчився та паспорти рф, без довідки про несудимість на території країни-агресора, оскільки рф блокує вихід з громадянства рф та затягує цей процес на необмежений час.</p>
+            </div>
+          </a>
+          
+      <p class="text">Вже підписали? Дуже дякуємо! Ось <a href="app.html/whats-next" onclick="logUIFAEvent('to_app_from_top')">наш основний сайт</a> для розбудови.
+          <br />
+          Не підписується? Дізнайтеся <a href="app.html/stories"
+          onclick="logUIFAEvent('to_app_stories_from_top')">особисті історії</a> тих, за кого просимо.</p>
 
-      <p class="text">Підписали? Тоді просимо <a href="app.html"
-          onclick="logUIFAEvent('goto_app_top_plans')">познайомитися з нашими подальшими планами</a>.</p>
-      <p class="text">Не хочете підписувати? Тоді просимо <a href="app.html/stories"
-          onclick="logUIFAEvent('goto_app_top_stories')">познайомитися з особистими історіями тих, за кого ми
-          просимо</a>.</p>
-
-      <p class="text">Ми детально пояснюємо свою позицію у <a class="link"
-          href="https://www.facebook.com/UkrainiansInFact/posts/pfbid02oND1yaDKrMwgKmiv9qQehzwLhrfiePPp9PVrjTHzhLmEFvKWbPXqsFCze5s5aLpil"
-          target="_blank">цьому дописі на Faceboook</a>. Процитуємо його тут:
-      </p>
-
-      <div>
-        <h2>Контраверсійна петиція №157298. Підписувати, чи ні?</h2>
+      <div class="text-wrap">
+        <h2>Так підписувати, чи ні?</h2>
 
         <h3>Чому варто підписати петицію?</h3>
         <h4>Це наші</h4>
@@ -64,7 +201,7 @@
 
         <h4>Захист дітей</h4>
         В більшості випадків йдеться про людей, що є батьками неповнолітніх. Це діти, що народились та виросли в
-        Україні. В разі ненадання громадянства їм доведеться, або лишати дітей напівсиротами, або вивозити їх в рф (?!).
+        Україні. В разі ненадання громадянства їм доведеться, або лишати дітей напівсиротами, або вивозити їх в рф (?!)
 
         <h4>Воїни, активісти, волонтери</h4>
         Багато з цих людей захищає нашу країну зі зброєю в руках, воює на інформаційному фронті чи допомагає країні в
@@ -91,20 +228,43 @@
 
         <h3>Що робити?</h3>
         <a class="link" href="https://petition.president.gov.ua/petition/157298" target="_blank"
-          onclick="logUIFAEvent('goto_petition_bottom')">Підписати Петицію для того, щоб вона стала публічною</a>, а
-        реальний закон був відповідний сучасним потребам.
+          onclick="gotoUIFPetition('from_bott_link')">Підписати Петицію для того, щоб вона стала публічною</a>, а
+        закон був відповідним до сучасних потреб.
 
+        <!-- SUMMARY TOP -->
+        <a class="summary-wrap" onclick="gotoUIFPetition('from_bott_banner')" href="https://petition.president.gov.ua/petition/157298" target="_blank">
+          <img src="https://petition.president.gov.ua/i/gerb.svg" >
+          <div>
+            <h2>Прохання До Президента України</h2>
+            <p>Благаємо Вас не розлучати нас з нашими рідними та на законодавчому рівні врегулювати ситуацію, що склалась, оскільки від цього залежить майбутнє не лише наших родин, а й України, вірними громадянами якої ми є.</p>
+          </div>
+        </a>
+
+        <p class="text-small">Цей текст є копією <a class="link"
+          href="https://www.facebook.com/UkrainiansInFact/posts/pfbid02oND1yaDKrMwgKmiv9qQehzwLhrfiePPp9PVrjTHzhLmEFvKWbPXqsFCze5s5aLpil"
+          onclick="logUIFAEvent('to_fb_post_from_bottom')"
+          target="_blank">посту на нашій Faceboook-сторінці</a>
+        </p>
       </div>
 
-      <a href="app.html" onclick="logUIFAEvent('goto_app_bottom_top')">Перейти до сайту</a>
-    </div>
+      <h2>Навіщо все це?</h2>
+      <p class="text">Це для того, щоб примножувати українство у невпинному рухові до гідності, людяності та добробуту.</p>
 
+      <div class="uif-footer-wrap">
+        <div class="uif-logo"><a href="app.html" onclick="logUIFAEvent('to_app_from_bottom_logo')" class="a-logo"></a></div>
+        <h1>Фактичні Українці</h1>
+        <div>
+          <a href="app.html/stories" onclick="logUIFAEvent('to_app_from_bottom')" class="go-site-btn">Перейти до сайту</a>
+        </div>
+        <small>&copy;UkrainiansInFact.org.ua 2022</small>
+      </div>
+
+    </div>
   </div>
 
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
     import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
-
     const firebaseConfig = {
       projectId: 'arekuni',
       appId: '1:50131028447:web:56c97bd406036bd09b1c6a',
@@ -115,29 +275,12 @@
       messagingSenderId: '50131028447',
       measurementId: 'G-JS38WZ0R3M',
     }
-
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
-
-    export function gotoUIFApp(event) {
-      event.preventDefault();
-      window.location.replace('./app.html')
-    }
-
-    export function logUIFAEvent(eventName) {
-      logEvent(analytics, 'notification_received');
-      logEvent(analytics, eventName);
-    }
-
+    export function gotoUIFPetition(linkName) { logUIFAEvent('to_tgt_' + linkName) }
+    export function logUIFAEvent(eventName) { logEvent(analytics, eventName) }
     window.logUIFAEvent = logUIFAEvent;
-    window.gotoUIFApp = gotoUIFApp;
+    window.gotoUIFPetition = gotoUIFPetition;
   </script>
-
-  <a onclick="gotoUIFApp(event)">go to app!</a>
-
-  <a href="#" onclick="logUIFAEvent('linkOne')" id="linkOne">One</a>
-  <a href="#" onclick="logUIFAEvent('linkTwo')" id="linkTwo">Two</a>
-
 </body>
-
 </html>
