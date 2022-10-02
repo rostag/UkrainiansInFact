@@ -14,13 +14,14 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/uif-client",
-            "index": "src/index.html",
+            "index": "src/app.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/assets/img/favicon/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/index.html"
             ],
             "styles": [
               "src/styles.scss"

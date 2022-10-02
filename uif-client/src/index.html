@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>Фактичні Українці</title>
-  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+  
   <!-- Favicons -->
-
+  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
   <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
@@ -17,29 +16,48 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-config" content="/assets/img/favicon/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
-
   <!-- / Favicons -->
 
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
 </head>
-<body class="mat-typography">
+<body>
   <script>
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyB9qso1TvQJwVv_7uGDHrsm7CTyw9XmWV0",
-      authDomain: "arekuni.firebaseapp.com",
-      projectId: "arekuni",
-      storageBucket: "arekuni.appspot.com",
-      messagingSenderId: "50131028447",
-      appId: "1:50131028447:web:56c97bd406036bd09b1c6a",
-      measurementId: "G-JS38WZ0R3M"
-    };
+    function gotoApp(event) {
+      event.preventDefault();
+      // window.alert('hi');
+      window.location.replace('./app.html')
+    }
   </script>
-  <app-root></app-root>
+
+  <h1>Happy Landing!</h1>
+
+  <a href="app.html">app</a>
+  
+  <a onclick="gotoApp(event)">go to app!</a>
+
+  <a href="#" id="linkOne">One</a>
+  <a href="#" id="linkTwo">Two</a>
+
+  <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
+
+    // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
+
+    const firebaseConfig = {
+      projectId: 'arekuni',
+      appId: '1:50131028447:web:56c97bd406036bd09b1c6a',
+      storageBucket: 'arekuni.appspot.com',
+      locationId: 'europe-central2',
+      apiKey: 'AIzaSyB9qso1TvQJwVv_7uGDHrsm7CTyw9XmWV0',
+      authDomain: 'arekuni.firebaseapp.com',
+      messagingSenderId: '50131028447',
+      measurementId: 'G-JS38WZ0R3M',
+    }
+
+    const app = initializeApp(firebaseConfig);
+
+  </script>
 
 </body>
 </html>
