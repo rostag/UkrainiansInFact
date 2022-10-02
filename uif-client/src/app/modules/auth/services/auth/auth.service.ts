@@ -47,7 +47,7 @@ export class AuthService {
           }
         });
       })
-      .catch((error) => this.showError(error));
+      .catch((error) => this.showAuthError(error));
   }
 
   // Sign up with email/password
@@ -60,7 +60,7 @@ export class AuthService {
         this.sendVerificationMail();
         this.setUserData(result.user);
       })
-      .catch((error) => this.showError(error));
+      .catch((error) => this.showAuthError(error));
   }
   // Send email verfificaiton when new user sign up
   sendVerificationMail() {
@@ -77,7 +77,7 @@ export class AuthService {
       .then(() => {
         window.alert('Електронний лист для зміни пароля надіслано, перевірте папку "Вхідні"');
       })
-      .catch((error) => this.showError(error));
+      .catch((error) => this.showAuthError(error));
   }
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
@@ -98,7 +98,7 @@ export class AuthService {
         this.router.navigate(['main/dashboard']);
         this.setUserData(result.user);
       })
-      .catch((error) => this.showError(error));
+      .catch((error) => this.showAuthError(error));
   }
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
@@ -127,17 +127,17 @@ export class AuthService {
   }
 
   messageMap = new Map<string, string>([
-    ["auth/popup-closed-by-user", "Ви закрили вікно входу через Google, не використавши його. Спробуйте ще раз, будь ласка."]
+    ["auth/popup-closed-by-user", "Ви закрили вікно входу через Google, не використавши його. Спробуйте ще раз, будь ласка."],
+    ["auth/invalid-email", "Email не відповідає формату адреси електронної пошти. Спробуйте ще раз, будь ласка."],
+    ["auth/internal-error", "Помилка сервісу. Спробуйте ще раз, будь ласка."],
+    ["auth/missing-email", "Не вказано  сервісу. Спробуйте ще раз, будь ласка."],
+    ["auth/email-already-in-use", "Ця поштова скринька вже зареєстрована. Спробуйте вказати іншу адресу або увійти з цією."],
+    ["auth/weak-password", "Обраний пароль занадто слабкий. Спробуйте складніший пароль, будь ласка."],
   ]);
 
-  showError(error: FirebaseError) {
-    const m = { 
-      "code": "auth/popup-closed-by-user", 
-      "customData": {}, 
-      "name": "FirebaseError"
-    };
+  showAuthError(error: FirebaseError) {
     const message = JSON.stringify(error, null, 2);
-    let messageText = `Помилка: ${this.messageMap.get(error.code) || ' деталі невідомі. Спробуйте ще раз.'}`;
+    let messageText = `Помилка: ${this.messageMap.get(error.code) || error.code || ' деталі невідомі. Спробуйте ще раз.'}`;
     this._snackBar.open(messageText, 'OK', { verticalPosition: 'top' });
   }
 }
