@@ -126,12 +126,18 @@ export class AuthService {
     });
   }
 
+  messageMap = new Map<string, string>([
+    ["auth/popup-closed-by-user", "Ви закрили вікно входу через Google, не використавши його. Спробуйте ще раз, будь ласка."]
+  ]);
+
   showError(error: FirebaseError) {
+    const m = { 
+      "code": "auth/popup-closed-by-user", 
+      "customData": {}, 
+      "name": "FirebaseError"
+    };
     const message = JSON.stringify(error, null, 2);
-    // window.alert(message);
-    this._snackBar.open(message, 'OK', {
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-    });
+    let messageText = `Помилка: ${this.messageMap.get(error.code) || ' деталі невідомі. Спробуйте ще раз.'}`;
+    this._snackBar.open(messageText, 'OK', { verticalPosition: 'top' });
   }
 }
