@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Фактичні Українці</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <!-- Favicons -->
   <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
   <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon/apple-touch-icon.png">
@@ -17,32 +18,92 @@
   <meta name="msapplication-config" content="/assets/img/favicon/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <!-- / Favicons -->
-
 </head>
+
 <body>
-  <script>
-    function gotoApp(event) {
-      event.preventDefault();
-      // window.alert('hi');
-      window.location.replace('./app.html')
+  <style>
+    .content-wrap {
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
-  </script>
+  </style>
+  <div class="content-wrap">
+    <h1>Фактичні Українці</h1>
+    <div class="">
+      <p class="text">Примножувати українство як ідею невпинного руху до гідності, волі та людяності.</p>
+      <p class="text">Зараз ми привертаємо увагу Президента до українців, які фактично є громадянами, але мають проблеми
+        з документальним підтвердженням свого фактичного громадянства. Тому ми закликаємо <a class="link"
+          href="https://petition.president.gov.ua/petition/157298" target="_blank"
+          onclick="logUIFAEvent('goto_petition_top')">підписати Петицію до Президента</a> і поширити її.</p>
 
-  <h1>Happy Landing!</h1>
+      <p class="text">Підписали? Тоді просимо <a href="app.html"
+          onclick="logUIFAEvent('goto_app_top_plans')">познайомитися з нашими подальшими планами</a>.</p>
+      <p class="text">Не хочете підписувати? Тоді просимо <a href="app.html/stories"
+          onclick="logUIFAEvent('goto_app_top_stories')">познайомитися з особистими історіями тих, за кого ми
+          просимо</a>.</p>
 
-  <a href="app.html">app</a>
-  
-  <a onclick="gotoApp(event)">go to app!</a>
+      <p class="text">Ми детально пояснюємо свою позицію у <a class="link"
+          href="https://www.facebook.com/UkrainiansInFact/posts/pfbid02oND1yaDKrMwgKmiv9qQehzwLhrfiePPp9PVrjTHzhLmEFvKWbPXqsFCze5s5aLpil"
+          target="_blank">цьому дописі на Faceboook</a>. Процитуємо його тут:
+      </p>
 
-  <a href="#" id="linkOne">One</a>
-  <a href="#" id="linkTwo">Two</a>
+      <div>
+        <h2>Контраверсійна петиція №157298. Підписувати, чи ні?</h2>
 
-  <!-- Insert this script at the bottom of the HTML, but before you use any Firebase services -->
+        <h3>Чому варто підписати петицію?</h3>
+        <h4>Це наші</h4>
+        В документі йдеться про фактичних громадян України. Тих, що роками проживають в українських родинах, сплачують
+        податки, виховують дітей, беруть участь у громадському житті.
+
+        <h4>Профілактика злочинності</h4>
+        Надання громадянства в даному випадку гарантує державний контроль. Без цього люди знаходяться у нелегальному
+        стані, що, очевидно сприяє беззаконню. Наприклад, корупції від влади, шахрайству в колі напівгромадян, торгівлі
+        людьми з боку злочинних угрупувань.
+
+        <h4>Захист дітей</h4>
+        В більшості випадків йдеться про людей, що є батьками неповнолітніх. Це діти, що народились та виросли в
+        Україні. В разі ненадання громадянства їм доведеться, або лишати дітей напівсиротами, або вивозити їх в рф (?!).
+
+        <h4>Воїни, активісти, волонтери</h4>
+        Багато з цих людей захищає нашу країну зі зброєю в руках, воює на інформаційному фронті чи допомагає країні в
+        інший спосіб. Депортація в даному випадку є втратою цінного ресурсу для України і 100-відсотковою в’язницею для
+        цих людей.
+
+        <h3>Що не так з петицією?</h3>
+        <h4>Неймінг</h4>
+        Від словосполучення «з російським громадянством» справедливо тіпає будь-якого українці. Ще один різновид хороших
+        рузьких? Може досить?!
+
+        <h4>Скарги на державу</h4>
+        Більшість історій пов’язані з тим, як люди роками нібито намагались легалізуватись і як бюрократія їм
+        перешкоджала. Втім паралельно існують історії про те, як таким саме громадянам рф це вдалось. Виникає питання:
+        чи дійсно ці люди старались, чи кинулись, коли відчули смажене? А також: це мнтально-совкове «мнє всє должни»?
+
+        <h4>Какая разніца\чєлюсть</h4>
+        Використання російської мови у зверненні та обговоренні. Виникає питання, чому люди не вивчили мову, чи не
+        вважають за потрібне нею користуватися? Володіння мовою є обов’язковою умовою будь-якого громадянства. Але
+        українське і так мають дати? Чому?
+
+        <h4>Відверта вата</h4>
+        Навіщо збільшувати відсоток тих, хто голосуватиме за нові «регіони» чи «шмарія»?
+
+        <h3>Що робити?</h3>
+        <a class="link" href="https://petition.president.gov.ua/petition/157298" target="_blank"
+          onclick="logUIFAEvent('goto_petition_bottom')">Підписати Петицію для того, щоб вона стала публічною</a>, а
+        реальний закон був відповідний сучасним потребам.
+
+      </div>
+
+      <a href="app.html" onclick="logUIFAEvent('goto_app_bottom_top')">Перейти до сайту</a>
+    </div>
+
+  </div>
+
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
-
-    // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
+    import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
 
     const firebaseConfig = {
       projectId: 'arekuni',
@@ -56,8 +117,27 @@
     }
 
     const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
 
+    export function gotoUIFApp(event) {
+      event.preventDefault();
+      window.location.replace('./app.html')
+    }
+
+    export function logUIFAEvent(eventName) {
+      logEvent(analytics, 'notification_received');
+      logEvent(analytics, eventName);
+    }
+
+    window.logUIFAEvent = logUIFAEvent;
+    window.gotoUIFApp = gotoUIFApp;
   </script>
 
+  <a onclick="gotoUIFApp(event)">go to app!</a>
+
+  <a href="#" onclick="logUIFAEvent('linkOne')" id="linkOne">One</a>
+  <a href="#" onclick="logUIFAEvent('linkTwo')" id="linkTwo">Two</a>
+
 </body>
+
 </html>

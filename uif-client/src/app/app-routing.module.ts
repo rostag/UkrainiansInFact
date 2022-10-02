@@ -4,6 +4,8 @@ import { AuthGuard } from './modules/auth/services';
 
 const routes: Routes = [
   { path: 'app.html', redirectTo: 'main', pathMatch: 'full' },
+  { path: 'app.html/stories', redirectTo: 'stories', pathMatch: 'full' },
+  { path: 'app.html/whats-next', redirectTo: '', pathMatch: 'full' },
   { path: 'tasks', loadChildren: () => import('./modules/tasks/tasks.module').then(m => m.TasksModule), canActivate: [AuthGuard] },
   { path: 'stories', loadChildren: () => import('./modules/stories/stories.module').then(m => m.StoriesModule), canActivate: [AuthGuard] },
   { path: 'main', loadChildren: () => import('./modules/main/main.module').then(m => m.MainModule) },
