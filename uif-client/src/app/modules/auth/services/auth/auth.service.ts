@@ -7,6 +7,9 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { User } from '../user';
+import { FirebaseError } from '@angular/fire/app';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +19,8 @@ export class AuthService {
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning,
+    private _snackBar: MatSnackBar,
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -43,10 +47,9 @@ export class AuthService {
           }
         });
       })
-      .catch((error) => {
-        window.alert(error.message);
-      });
+      .catch((error) => this.showAuthError(error));
   }
+
   // Sign up with email/password
   signUp(email: string, password: string) {
     return this.afAuth
@@ -57,28 +60,24 @@ export class AuthService {
         this.sendVerificationMail();
         this.setUserData(result.user);
       })
-      .catch((error) => {
-        window.alert(error.message);
-      });
+      .catch((error) => this.showAuthError(error));
   }
   // Send email verfificaiton when new user sign up
   sendVerificationMail() {
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['verify-email-address']);
+        this.router.navigate(['auth', 'verify-email-address']);
       });
   }
-  // Reset Forggot password
+  // Reset Forgotnen password
   forgotPassword(passwordResetEmail: string) {
     return this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
+        window.alert('Електронний лист для зміни пароля надіслано, перевірте папку "Вхідні"');
       })
-      .catch((error) => {
-        window.alert(error);
-      });
+      .catch((error) => this.showAuthError(error));
   }
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
@@ -99,9 +98,7 @@ export class AuthService {
         this.router.navigate(['main/dashboard']);
         this.setUserData(result.user);
       })
-      .catch((error) => {
-        window.alert(error);
-      });
+      .catch((error) => this.showAuthError(error));
   }
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
@@ -127,5 +124,20 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['/']);
     });
+  }
+
+  messageMap = new Map<string, string>([
+    ["auth/popup-closed-by-user", "Ви закрили вікно входу через Google, не використавши його. Спробуйте ще раз, будь ласка."],
+    ["auth/invalid-email", "Email не відповідає формату адреси електронної пошти. Спробуйте ще раз, будь ласка."],
+    ["auth/internal-error", "Помилка сервісу. Спробуйте ще раз, будь ласка."],
+    ["auth/missing-email", "Не вказано  сервісу. Спробуйте ще раз, будь ласка."],
+    ["auth/email-already-in-use", "Ця поштова скринька вже зареєстрована. Спробуйте вказати іншу адресу або увійти з цією."],
+    ["auth/weak-password", "Обраний пароль занадто слабкий. Спробуйте складніший пароль, будь ласка."],
+  ]);
+
+  showAuthError(error: FirebaseError) {
+    const message = JSON.stringify(error, null, 2);
+    let messageText = `Помилка: ${this.messageMap.get(error.code) || error.code || ' деталі невідомі. Спробуйте ще раз.'}`;
+    this._snackBar.open(messageText, 'OK', { verticalPosition: 'top' });
   }
 }

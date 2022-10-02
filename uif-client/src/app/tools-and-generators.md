@@ -3,6 +3,11 @@
 <https://realfavicongenerator.net/>
 <https://realfavicongenerator.net/favicon_checker?protocol=https&site=ukrainiansinfact.org.ua#.YzdtQOxBygw>
 
+## Articles
+
+Angular and Firebase auth:
+<https://www.positronx.io/full-angular-firebase-authentication-system/>
+
 ## Modules creation history
 
 ng g m --routing modules/auth

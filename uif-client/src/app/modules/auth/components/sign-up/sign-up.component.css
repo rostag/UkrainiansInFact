@@ -1,0 +1,15 @@
+.form-fields {
+    max-width: 300px;
+}
+
+.form-field {
+    display: block;
+}
+
+.or {
+    padding: 1em 0;
+}
+
+.login {
+    margin-top: 1em;
+}

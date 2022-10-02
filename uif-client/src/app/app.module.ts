@@ -21,7 +21,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-import { AuthGuard } from './services';
+import { AuthGuard } from './modules/auth/services';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AuthGuard } from './services';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatSnackBarModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

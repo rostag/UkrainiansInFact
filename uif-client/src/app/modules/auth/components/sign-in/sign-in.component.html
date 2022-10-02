@@ -1,33 +1,27 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-      <div class="authBlock">
+      <div class="auth-wrap">
         <h3>Увійти</h3>
-        <div class="formGroup">
-          <input type="text" class="formControl" placeholder="email" #userName required>
+        <div class="form-fields">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Email</mat-label>
+            <input matInput #userName required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Пароль</mat-label>
+            <input matInput type="password" #userPassword required>
+          </mat-form-field>
         </div>
-        <div class="formGroup">
-          <input type="password" class="formControl" placeholder="пароль" #userPassword required>
-        </div>
-        <!-- Calling signIn Api from AuthService -->
-        <div class="formGroup">
-          <input type="button" class="btn btnPrimary" value="Увійти" (click)="authService.signIn(userName.value, userPassword.value)">
-        </div>
-        <div class="formGroup">
-          <span class="or"><span class="orInner">або</span></span>
-        </div>
-        <!-- Calling googleAuth Api from AuthService -->
-        <div class="formGroup">
-          <button type="button" class="btn googleBtn" (click)="authService.googleAuth()">
-            Увійти з обліковим записом Google
+        <div class="flex-row">
+          <button mat-stroked-button color="primary" (click)="authService.signIn(userName.value, userPassword.value)">Увійти</button>
+          <span class="or">або</span>
+          <button mat-stroked-button color="primary" (click)="authService.googleAuth()">
+            Увійти через Google
           </button>
-        </div>
-        <div class="forgotPassword">
-          <a routerLink="/auth/forgot-password">Забув пароль?</a>
+          </div>
+        <div class="additional-actions">
+          <a routerLink="/auth/forgot-password">Я не пам’ятаю пароль</a>
         </div>
       </div>
-      <div class="redirectToLogin">
+      <div>
         <a routerLink="/auth/sign-up">Реєстрація</a>
       </div>
-    </div>
-  </div>
   

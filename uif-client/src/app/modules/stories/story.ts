@@ -1,7 +1,7 @@
 export interface Story {
-    id: string,
-    title: boolean;
-    text: boolean;
+    id: string;
+    title: string;
+    text: string;
     image: string;
     isPublished: boolean;
     facebookProfile: string;
