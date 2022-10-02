@@ -7,6 +7,9 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { User } from '../user';
+import { FirebaseError } from '@angular/fire/app';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +19,8 @@ export class AuthService {
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone, // NgZone service to remove outside scope warning,
+    private _snackBar: MatSnackBar,
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -43,9 +47,7 @@ export class AuthService {
           }
         });
       })
-      .catch((error) => {
-        window.alert(error.message);
-      });
+      .catch((error) => this.showError(error));
   }
 
   // Sign up with email/password
@@ -58,9 +60,7 @@ export class AuthService {
         this.sendVerificationMail();
         this.setUserData(result.user);
       })
-      .catch((error) => {
-        window.alert(error.message);
-      });
+      .catch((error) => this.showError(error));
   }
   // Send email verfificaiton when new user sign up
   sendVerificationMail() {
@@ -77,9 +77,7 @@ export class AuthService {
       .then(() => {
         window.alert('Електронний лист для зміни пароля надіслано, перевірте папку "Вхідні"');
       })
-      .catch((error) => {
-        window.alert(error);
-      });
+      .catch((error) => this.showError(error));
   }
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
@@ -100,9 +98,7 @@ export class AuthService {
         this.router.navigate(['main/dashboard']);
         this.setUserData(result.user);
       })
-      .catch((error) => {
-        window.alert(error);
-      });
+      .catch((error) => this.showError(error));
   }
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
@@ -127,6 +123,15 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['/']);
+    });
+  }
+
+  showError(error: FirebaseError) {
+    const message = JSON.stringify(error, null, 2);
+    // window.alert(message);
+    this._snackBar.open(message, 'OK', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
 }
