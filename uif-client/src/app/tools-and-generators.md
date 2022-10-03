@@ -33,3 +33,7 @@ ng g m --routing modules/main/modules/notes && ng g c modules/main/modules/notes
 
 ng g c modules/auth/components/forgot-password -m=modules/auth --dry-run
 ng g c modules/auth/components/verify-email -m=modules/auth --dry-run
+
+## Generate whats-next component in main module
+
+ng g c modules/main/components/whats-next --dry-run
