@@ -1,13 +1,13 @@
 {
   "name": "uif-client",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "get-stats": "ng build --stats-json && webpack-bundle-analyzer dist/uif-client/stats.json"
+    "get-stats": "ng build --stats-json > unbundling-stats.txt && webpack-bundle-analyzer dist/uif-client/stats.json"
   },
   "private": true,
   "dependencies": {
