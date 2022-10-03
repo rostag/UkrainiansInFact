@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Story } from '../../story';
 
 @Component({
   selector: 'app-story',
@@ -7,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoryComponent implements OnInit {
 
-  constructor() { }
+  @Input() displayMode: 'full' | 'title' = 'full';
+
+  @Input() story: Story = {
+    id: '',
+    title: '',
+    text: '',
+    image: '',
+    isPublished: false,
+    facebookProfile: '',
+    instagramProfile: ''
+  };
+
+  constructor() { 
+  }
 
   ngOnInit(): void {
   }
