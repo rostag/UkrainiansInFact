@@ -9,24 +9,29 @@
     background-size: cover;
     background-attachment: fixed;
     /* background-blend-mode: lighten; */
-    background-position-y: -100px;
+    background-position-y: -170px;
+    background-repeat: no-repeat;
     margin-top: -84px;
     text-align: center;
     color: #ffffff;
-    font-size: 40px;
+    text-shadow: #00487f 1px 0 15px;
+    font-size: 60px;
     padding-top: 230px;
     background-image: url('../assets/img/Rpsti_Ukrainian_country-side_landscape_of_beautiful_valley_with_50397e29-24db-4668-b31f-107d503befd2.jpg');
 }
 
 .transparent-toolbar {
     margin-bottom: 20px;
-    background: transparent;
+}
+
+::ng-deep .transparent-toolbar .mat-button-wrapper {
+    text-shadow: #002b4b 1px 1px 5px;
 }
 
 .content-wrapper {
     max-width: 1400px;
     margin: auto;
-    padding: 1em 2em;
+    padding: 6em 4em;
 }
 
 .toolbar-spacer {

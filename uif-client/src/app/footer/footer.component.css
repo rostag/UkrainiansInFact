@@ -35,3 +35,16 @@ mat-icon {
     height: 12px;
     font-size: 12px;
 }
+
+.social-icons a {
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+.social-icons mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+
+}
