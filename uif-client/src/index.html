@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <title>Фактичні Українці</title>
+  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Favicons -->
   <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+  <!-- Favicons -->
+
   <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
@@ -16,271 +17,28 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-config" content="/assets/img/favicon/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
+
   <!-- / Favicons -->
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
-
-<body>
-  <style>
-    html {
-      box-sizing: border-box;
-      font-size: 16px;
-      line-height: 1.8rem;
-      font-family: Georgia, "Times New Roman", Times, serif;
-    }
-
-    *, *:before, *:after {
-      box-sizing: inherit;
-    }
-
-    body, h1, h2, h3, h4, h5, h6, p, ol, ul {
-      font-weight: normal;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-    
-    .content-wrap {
-      max-width: 820px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .uif-footer-wrap,
-    .uif-header-wrap {
-      text-align: center;
-    }
-
-    /* attractor */
-    .uif-footer-wrap {
-      margin: 3rem -15rem 0;
-      background-color: #00487f;
-      background-size: cover;
-      background-attachment: fixed;
-      /* background-blend-mode: lighten; */
-      background-position-y: -1px;
-      text-align: center;
-      font-size: 1rem;
-      padding-top: 370px;
-      color: #fff;
-      background-image: url(../assets/img/Rpsti_Ukrainian_country-side_landscape_of_beautiful_valley_with_50397e29-24db-4668-b31f-107d503befd2.jpg);
-      background-repeat: no-repeat;
-      padding-bottom: 1rem;
-    }
-
-    .uif-footer-wrap .uif-logo,
-    .uif-header-wrap .uif-logo {
-      width: 100px;
-      margin-right: auto;
-      margin-left: auto;
-      height: 100px;
-      border-radius: 50px;
-      background-image: url(../../assets/img/uif-logo-smaller.jpg);
-    }
-
-
-    .a-logo {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .go-site-btn {
-      text-decoration: none;
-      display: inline-block;
-      padding: 1rem;
-      color: rgb(194, 234, 248);
-      width: auto;
-      margin-right: auto;
-      margin-left: auto;
-      border-radius: 35px;
-      margin-bottom: 1rem;
-    }
-    
-    .go-site-btn:hover {
-      background-color: deepskyblue;
-      color: #000;
-    }
-
-    /* Summary Wrap */
-    .summary-wrap {
-      min-height: 195px;
-      display: flex;
-      align-items: flex-start;
-      border-top: 1px solid #eee;
-      border-bottom: 1px solid #eee;
-      padding: 1rem 1rem 0rem;
-      margin: 3rem 0;
-      text-decoration: none;
-      color: #111;
-      border-radius: 1.5rem;
-    }
-
-    .summary-wrap:hover {
-      background-color: #eee;
-      cursor: pointer;
-    }
-
-    .summary-wrap img {
-      width: 160px;
-      height: 160px;
-      margin-right: 1rem;
-    }
-
-    .summary-wrap h2 {
-      text-transform: uppercase;
-      margin-top: 0;
-      margin-bottom: 0.7rem;
-    }
-
-    .summary-wrap p {
-      margin-top: 0.1rem;
-      line-height: 1.5rem;
-    }
-
-    .text-wrap {
-      margin: 3rem 0;
-    }
-    
-    .text-wrap h2, 
-    .text-wrap h3,
-    .text-wrap h4 {
-      font-weight: bold;
-    }
-
-    .text-small {
-      color: #777;
-      font-size: 0.8rem;
-      text-align: right;
-    }
-
-    /* End Summary Wrap */
-    
-  </style>
-  <div class="content-wrap">
-    <div class="content">
-      <div class="uif-header-wrap">
-        <div class="uif-logo"></div>
-        <h1>Фактичні Українці</h1>
-      </div>
-      
-      <p class="text">Ті, що довели своє громадянство 
-        роками роботи й служіння нашій громаді. Вони часто мають проблеми
-        з документальним підтвердженням свого статусу. Тому ми привертаємо увагу Президента України до цієї проблеми. Для цього закликаємо <a class="link"
-          href="https://petition.president.gov.ua/petition/157298" target="_blank"
-          onclick="gotoUIFPetition('from_top_link')">підписати і поширити Петицію №157298</a>. Ось її зміст стисло:</p>
-  
-          <!-- SUMMARY TOP -->
-          <a class="summary-wrap" onclick="gotoUIFPetition('from_top_banner')" href="https://petition.president.gov.ua/petition/157298" target="_blank">
-            <img src="https://petition.president.gov.ua/i/gerb.svg" >
-            <div>
-              <h2>Петиція до Президента України №157298</h2>
-              <p>Просимо увести спеціальну процедуру для подання документів на дозвіл на імміграцію, посвідку на проживання або громадянство України, маючи
-                на руках закордонні паспорти, термін дії яких закінчився та паспорти рф, без довідки про несудимість на території країни-агресора, оскільки рф блокує вихід з громадянства рф та затягує цей процес на необмежений час.</p>
-            </div>
-          </a>
-          
-      <p class="text">Вже підписали? Дуже дякуємо! Ось <a href="/app.html/whats-next" onclick="logUIFAEvent('to_app_from_top')">наш основний сайт</a> для розбудови.
-          <br />
-          Не підписується? Дізнайтеся <a href="/app.html/stories"
-          onclick="logUIFAEvent('to_app_stories_from_top')">особисті історії</a> тих, за кого просимо.</p>
-
-      <div class="text-wrap">
-        <h2>Так підписувати, чи ні?</h2>
-
-        <h3>Чому варто підписати петицію?</h3>
-        <h4>Це наші</h4>
-        В документі йдеться про фактичних громадян України. Тих, що роками проживають в українських родинах, сплачують
-        податки, виховують дітей, беруть участь у громадському житті.
-
-        <h4>Профілактика злочинності</h4>
-        Надання громадянства в даному випадку гарантує державний контроль. Без цього люди знаходяться у нелегальному
-        стані, що, очевидно сприяє беззаконню. Наприклад, корупції від влади, шахрайству в колі напівгромадян, торгівлі
-        людьми з боку злочинних угрупувань.
-
-        <h4>Захист дітей</h4>
-        В більшості випадків йдеться про людей, що є батьками неповнолітніх. Це діти, що народились та виросли в
-        Україні. В разі ненадання громадянства їм доведеться, або лишати дітей напівсиротами, або вивозити їх в рф (?!)
-
-        <h4>Воїни, активісти, волонтери</h4>
-        Багато з цих людей захищає нашу країну зі зброєю в руках, воює на інформаційному фронті чи допомагає країні в
-        інший спосіб. Депортація в даному випадку є втратою цінного ресурсу для України і 100-відсотковою в’язницею для
-        цих людей.
-
-        <h3>Що не так з петицією?</h3>
-        <h4>Неймінг</h4>
-        Від словосполучення «з російським громадянством» справедливо тіпає будь-якого українці. Ще один різновид хороших
-        рузьких? Може досить?!
-
-        <h4>Скарги на державу</h4>
-        Більшість історій пов’язані з тим, як люди роками нібито намагались легалізуватись і як бюрократія їм
-        перешкоджала. Втім паралельно існують історії про те, як таким саме громадянам рф це вдалось. Виникає питання:
-        чи дійсно ці люди старались, чи кинулись, коли відчули смажене? А також: це мнтально-совкове «мнє всє должни»?
-
-        <h4>Какая разніца\чєлюсть</h4>
-        Використання російської мови у зверненні та обговоренні. Виникає питання, чому люди не вивчили мову, чи не
-        вважають за потрібне нею користуватися? Володіння мовою є обов’язковою умовою будь-якого громадянства. Але
-        українське і так мають дати? Чому?
-
-        <h4>Відверта вата</h4>
-        Навіщо збільшувати відсоток тих, хто голосуватиме за нові «регіони» чи «шмарія»?
-
-        <h3>Що робити?</h3>
-        <a class="link" href="https://petition.president.gov.ua/petition/157298" target="_blank"
-          onclick="gotoUIFPetition('from_bott_link')">Підписати Петицію для того, щоб вона стала публічною</a>, а
-        закон був відповідним до сучасних потреб.
-
-        <!-- SUMMARY TOP -->
-        <a class="summary-wrap" onclick="gotoUIFPetition('from_bott_banner')" href="https://petition.president.gov.ua/petition/157298" target="_blank">
-          <img src="https://petition.president.gov.ua/i/gerb.svg" >
-          <div>
-            <h2>Прохання До Президента України</h2>
-            <p>Благаємо Вас не розлучати нас з нашими рідними та на законодавчому рівні врегулювати ситуацію, що склалась, оскільки від цього залежить майбутнє не лише наших родин, а й України, вірними громадянами якої ми є.</p>
-          </div>
-        </a>
-
-        <p class="text-small">Цей текст є копією <a class="link"
-          href="https://www.facebook.com/UkrainiansInFact/posts/pfbid02oND1yaDKrMwgKmiv9qQehzwLhrfiePPp9PVrjTHzhLmEFvKWbPXqsFCze5s5aLpil"
-          onclick="logUIFAEvent('to_fb_post_from_bottom')"
-          target="_blank">посту на нашій Faceboook-сторінці</a>
-        </p>
-      </div>
-
-      <h2>Навіщо все це?</h2>
-      <p class="text">Це для того, щоб примножувати українство у невпинному рухові до гідності, людяності та добробуту.</p>
-
-      <div class="uif-footer-wrap">
-        <div class="uif-logo"><a href="/app.html" onclick="logUIFAEvent('to_app_from_bottom_logo')" class="a-logo"></a></div>
-        <h1>Фактичні Українці</h1>
-        <div>
-          <a href="/app.html/whats-next" onclick="logUIFAEvent('to_app_from_bottom')" class="go-site-btn">Перейти до сайту</a>
-        </div>
-        <small>&copy;UkrainiansInFact.org.ua 2022</small>
-      </div>
-
-    </div>
-  </div>
-
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js'
-    import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js'
+<body class="mat-typography">
+  <script>
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
-      projectId: 'arekuni',
-      appId: '1:50131028447:web:56c97bd406036bd09b1c6a',
-      storageBucket: 'arekuni.appspot.com',
-      locationId: 'europe-central2',
-      apiKey: 'AIzaSyB9qso1TvQJwVv_7uGDHrsm7CTyw9XmWV0',
-      authDomain: 'arekuni.firebaseapp.com',
-      messagingSenderId: '50131028447',
-      measurementId: 'G-JS38WZ0R3M',
-    }
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    export function gotoUIFPetition(linkName) { logUIFAEvent('to_tgt_' + linkName) }
-    export function logUIFAEvent(eventName) { logEvent(analytics, eventName) }
-    window.logUIFAEvent = logUIFAEvent;
-    window.gotoUIFPetition = gotoUIFPetition;
+      apiKey: "AIzaSyB9qso1TvQJwVv_7uGDHrsm7CTyw9XmWV0",
+      authDomain: "arekuni.firebaseapp.com",
+      projectId: "arekuni",
+      storageBucket: "arekuni.appspot.com",
+      messagingSenderId: "50131028447",
+      appId: "1:50131028447:web:56c97bd406036bd09b1c6a",
+      measurementId: "G-JS38WZ0R3M"
+    };
   </script>
+  <app-root></app-root>
+
 </body>
 </html>
