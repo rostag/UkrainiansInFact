@@ -8,6 +8,12 @@
 Angular and Firebase auth:
 <https://www.positronx.io/full-angular-firebase-authentication-system/>
 
+Alternative ways to add Firebase to your JavaScript project:
+<https://firebase.google.com/docs/web/alt-setup>
+
+Logging Analytics:
+<https://firebase.google.com/docs/analytics/get-started?platform=web>
+
 ## Modules creation history
 
 ng g m --routing modules/auth
