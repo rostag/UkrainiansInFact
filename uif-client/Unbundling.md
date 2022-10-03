@@ -79,3 +79,22 @@ Lazy Chunk Files              | Names                              |   Raw Size 
 526.e2fc2d31e4dfd770.js       | modules-not-found-not-found-module |  783 bytes |               381 bytes
 
 ## After Light-land
+
+Initial Chunk Files           | Names                              |   Raw Size | Estimated Transfer Size
+main.7af33f6d501e4d0f.js      | main                               | 1017.43 kB |               255.28 kB
+styles.ce19b654846c5807.css   | styles                             |   74.08 kB |                 7.71 kB
+polyfills.a3d939ae94c36124.js | polyfills                          |   33.08 kB |                10.63 kB
+runtime.2bd6ed3047049393.js   | runtime                            |    3.10 kB |                 1.49 kB
+
+| Initial Total                      |    1.10 MB |               275.11 kB
+
+Lazy Chunk Files              | Names                              |   Raw Size | Estimated Transfer Size
+144.51af64c504db02c8.js       | modules-tasks-tasks-module         |   64.40 kB |                13.58 kB
+272.51d6dd9df6d094ca.js       | modules-tasks-tasks-module         |   54.73 kB |                13.12 kB
+382.c180c01689fe6419.js       | modules-tasks-tasks-module         |   24.28 kB |                 5.97 kB
+675.4cc511ebe569bcf9.js       | modules-auth-auth-module           |    8.04 kB |                 1.79 kB
+626.6abd2445bfa7ffd8.js       | modules-stories-stories-module     |    7.25 kB |                 1.99 kB
+4.1ed68e5fd010b625.js         | modules-main-main-module           |    2.72 kB |                 1.06 kB
+526.e2fc2d31e4dfd770.js       | modules-not-found-not-found-module |  783 bytes |               381 bytes
+
+Build at: 2022-10-03T07:32:44.799Z - Hash: 8ceef2201783da40 - Time: 17665ms
