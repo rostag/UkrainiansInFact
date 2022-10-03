@@ -20,6 +20,9 @@ const getStoriesObservable = (collection: AngularFirestoreCollection<Story>) => 
 })
 export class StoriesComponent implements OnInit {
 
+  displayMode: 'storyList' | 'storyCarousel' | 'storyTitles' | 'single' = 'storyList';
+  storySingleIndex: number = 0;
+
   afsStoriesCollection: AngularFirestoreCollection<Story> = this.store.collection('stories');
   stories = getStoriesObservable(this.afsStoriesCollection) as Observable<Story[]>;
 

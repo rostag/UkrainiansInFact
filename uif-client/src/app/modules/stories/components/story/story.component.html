@@ -1,1 +1,26 @@
-<p>story works!</p>
+<ng-container [ngSwitch]="displayMode">
+    <ng-container *ngSwitchCase="'title'" [ngTemplateOutlet]="storyTitle"></ng-container>
+    <ng-container *ngSwitchDefault [ngTemplateOutlet]="storyFull"></ng-container>
+</ng-container>
+
+<ng-template #storyTitle>
+    <h2>{{ story.title }}</h2>
+</ng-template>
+
+<ng-template #storyFull>
+    <h1>{{ story.title }}</h1>
+    <div *ngIf="!story.isPublished; else notPublished">
+        <div class="text">{{ story.text }}</div>
+        <div class="image">{{ story.image }}</div>
+        <div class="facebookProfile">{{ story.facebookProfile }}</div>
+        <div class="instagramProfile">{{ story.instagramProfile }}</div>
+    </div>
+</ng-template>
+
+<ng-template #notPublished>
+    Ця історія ще не опублікована
+</ng-template>
+
+<div *ngIf="!story">
+    Ця історія ще не існує
+</div>
