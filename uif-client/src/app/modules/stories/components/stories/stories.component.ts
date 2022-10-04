@@ -1,37 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Story } from '../../story';
+import { BehaviorSubject, Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import { Story, StoryDisplayMode } from '../../story';
 import { StoryDialogComponent, StoryDialogResult } from '../add-story/story-dialog.component';
-
-const getStoriesObservable = (collection: AngularFirestoreCollection<Story>) => {
-  const subj = new BehaviorSubject<Story[]>([]);
-  collection.valueChanges({ idField: 'id' }).subscribe((value: Story[]) => {
-    subj.next(value);
-  });
-  return subj;
-}
 
 @Component({
   selector: 'app-stories',
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.css']
 })
-export class StoriesComponent implements OnInit {
+export class StoriesComponent implements OnInit, OnDestroy {
 
-  displayMode: 'storyList' | 'storyCarousel' | 'storyTitles' | 'single' = 'storyList';
+  displayMode: StoryDisplayMode = 'storyList';
   storySingleIndex: number = 0;
 
   afsStoriesCollection: AngularFirestoreCollection<Story> = this.store.collection('stories');
-  stories = getStoriesObservable(this.afsStoriesCollection) as Observable<Story[]>;
+  stories = this.getStoriesObservable(this.afsStoriesCollection) as Observable<Story[]>;
+
+  storiesResult: Story[] = [];
+  
+  onDestroy$ = new Subject();
 
   constructor(
     private store: AngularFirestore,
     private dialog: MatDialog
   ) { }
 
+  ngOnDestroy(): void {
+    this.onDestroy$.next(true);
+    this.onDestroy$.complete();
+  }
+
   ngOnInit(): void { }
+
+  getStoriesObservable (collection: AngularFirestoreCollection<Story>) {
+    const subj = new BehaviorSubject<Story[]>([]);
+    collection.valueChanges({ idField: 'id' }).subscribe((value: Story[]) => {
+      this.storiesResult = value;
+      subj.next(value);
+    });
+    return subj;
+  }
+
+  getStoryFromResult(index: number) {
+    return this.storiesResult[index]
+  }
 
   addStory(): void {
     const dialogRef = this.dialog.open(StoryDialogComponent, {
