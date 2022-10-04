@@ -8,3 +8,5 @@ export interface Story {
     instagramProfile: string;
     instagramEmbedCode?: string;
 }
+
+export type StoryDisplayMode = 'storyList' | 'storyCarousel' | 'storyTitle' | 'storySingle';

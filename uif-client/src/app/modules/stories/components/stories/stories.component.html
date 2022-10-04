@@ -6,8 +6,8 @@
 
     <ng-container [ngSwitch]="displayMode">
         <ng-container *ngSwitchCase="'storyCarousel'" [ngTemplateOutlet]="storyCarousel"></ng-container>
-        <ng-container *ngSwitchCase="'storyTitles'" [ngTemplateOutlet]="storyTitles"></ng-container>
-        <!-- <ng-container *ngSwitchCase="'storySingle'" [ngTemplateOutlet]="storySingle"></ng-container> -->
+        <ng-container *ngSwitchCase="'storyTitle'" [ngTemplateOutlet]="storyTitle"></ng-container>
+        <ng-container *ngSwitchCase="'storySingle'" [ngTemplateOutlet]="storySingle"></ng-container>
         <ng-container *ngSwitchDefault [ngTemplateOutlet]="storyList"></ng-container>
     </ng-container>
 
@@ -24,30 +24,22 @@
                         </div>
                         <button mat-button color="primary" (click)="editStory(story)">Редагувати</button>
                     </div>
-
                     <p>{{story.text}}</p>
-                    
-                    <div class="story-image-wrap"><img class="story-image" [src]="story.image" /></div>
-                    
-                    <!-- <div class="flex">    
-                        <div><span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span> <span *ngIf="story.instagramProfile">Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span></div>
-                        <button mat-stroked-button color="primary" (click)="editStory(story)">Редагувати</button>
-                    </div> -->
-                    
+                    <div class="story-image-wrap"><img class="story-image" [src]="story.image" /></div>                    
                 </div>
             </div>
         </div>
     </ng-template>
 
-    <ng-template #storyTitles>
-        <app-story *ngFor="let story of stories | async" [story]="story" [displayMode]="'title'">
+    <ng-template #storyTitle>
+        <app-story *ngFor="let story of stories | async" [story]="story" [displayMode]="'storyTitle'">
         </app-story>
     </ng-template>
 
-    <!-- <ng-template #storySingle>
-      <app-story [story]="stories[storySingleIndex] | async" [displayMode]="'title'">
+    <ng-template #storySingle>
+      <app-story [story]="getStoryFromResult(0)" [displayMode]="'storySingle'">
       </app-story>
-    </ng-template> -->
+    </ng-template>
 
     <ng-template #storyCarousel>
       <app-story *ngFor="let story of stories | async" [story]="story">

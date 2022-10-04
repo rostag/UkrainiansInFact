@@ -1,5 +1,6 @@
 <ng-container [ngSwitch]="displayMode">
-    <ng-container *ngSwitchCase="'title'" [ngTemplateOutlet]="storyTitle"></ng-container>
+    <ng-container *ngSwitchCase="'storyTitle'" [ngTemplateOutlet]="storyTitle"></ng-container>
+    <ng-container *ngSwitchCase="'storySingle'" [ngTemplateOutlet]="storySingle"></ng-container>
     <ng-container *ngSwitchDefault [ngTemplateOutlet]="storyFull"></ng-container>
 </ng-container>
 
@@ -8,6 +9,16 @@
 </ng-template>
 
 <ng-template #storyFull>
+    <h1>{{ story.title }}</h1>
+    <div *ngIf="!story.isPublished; else notPublished">
+        <div class="text">{{ story.text }}</div>
+        <div class="image">{{ story.image }}</div>
+        <div class="facebookProfile">{{ story.facebookProfile }}</div>
+        <div class="instagramProfile">{{ story.instagramProfile }}</div>
+    </div>
+</ng-template>
+
+<ng-template #storySingle>
     <h1>{{ story.title }}</h1>
     <div *ngIf="!story.isPublished; else notPublished">
         <div class="text">{{ story.text }}</div>

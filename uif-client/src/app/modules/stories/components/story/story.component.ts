@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Story } from '../../story';
+import { Story, StoryDisplayMode } from '../../story';
 
 @Component({
   selector: 'app-story',
@@ -8,7 +8,7 @@ import { Story } from '../../story';
 })
 export class StoryComponent implements OnInit {
 
-  @Input() displayMode: 'full' | 'title' = 'full';
+  @Input() displayMode: StoryDisplayMode = 'storySingle';
 
   @Input() story: Story = {
     id: '',
