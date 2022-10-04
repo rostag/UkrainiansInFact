@@ -4,6 +4,12 @@
         <button mat-button color="primary" (click)="addStory()" class="add-button">+</button>
     </div>
 
+    <mat-button-toggle-group name="displayMode" aria-label="Режим відображення історій" (change)="setDisplayMode($event)">
+        <mat-button-toggle value="storySingle">Особиста історія</mat-button-toggle>
+        <mat-button-toggle value="storyTitle">Заголовки</mat-button-toggle>
+        <mat-button-toggle value="storyList">Одним списком</mat-button-toggle>
+    </mat-button-toggle-group>
+
     <ng-container [ngSwitch]="displayMode">
         <ng-container *ngSwitchCase="'storyCarousel'" [ngTemplateOutlet]="storyCarousel"></ng-container>
         <ng-container *ngSwitchCase="'storyTitle'" [ngTemplateOutlet]="storyTitle"></ng-container>
@@ -11,31 +17,27 @@
         <ng-container *ngSwitchDefault [ngTemplateOutlet]="storyList"></ng-container>
     </ng-container>
 
-    <div>Show as: {{displayMode}}</div>
-
     <ng-template #storyList>
         <div class="stories-flex">
-            <app-story *ngFor="let story of stories | async" [story]="story" [displayMode]="'storyList'">
+            <app-story *ngFor="let story of stories | async" [story]="story" [displayMode]="'storyList'" (edit)="editStory($event)">
             </app-story>
         </div>
     </ng-template>
 
     <ng-template #storyTitle>
-        <app-story *ngFor="let story of stories | async" [story]="story" [displayMode]="'storyTitle'">
+        <app-story *ngFor="let story of stories | async" [story]="story" [displayMode]="'storyTitle'" (edit)="editStory($event)">
         </app-story>
     </ng-template>
 
     <ng-template #storySingle>
-      <app-story [story]="getStoryFromResult(0)" [displayMode]="'storySingle'">
+      <app-story [story]="getStoryFromResult(0)" [displayMode]="'storySingle'" (edit)="editStory($event)">
       </app-story>
     </ng-template>
 
     <ng-template #storyCarousel>
-      <app-story *ngFor="let story of stories | async" [story]="story">
+      <app-story *ngFor="let story of stories | async" [story]="story" (edit)="editStory($event)">
       </app-story>
     </ng-template>
-
-    <p>(Розділ у розробці)</p>
 
     <div class="spacer"></div>
 </div>

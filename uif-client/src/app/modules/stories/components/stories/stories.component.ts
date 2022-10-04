@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { Story, StoryDisplayMode } from '../../story';
@@ -12,7 +13,7 @@ import { StoryDialogComponent, StoryDialogResult } from '../add-story/story-dial
 })
 export class StoriesComponent implements OnInit, OnDestroy {
 
-  displayMode: StoryDisplayMode = 'storyList';
+  displayMode: StoryDisplayMode = 'storySingle';
   storySingleIndex: number = 0;
 
   afsStoriesCollection: AngularFirestoreCollection<Story> = this.store.collection('stories');
@@ -81,6 +82,10 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
   deleteStory(story: Story) {
     this.afsStoriesCollection.doc(story.id).delete();
+  }
+
+  setDisplayMode(event: MatButtonToggleChange) {
+    this.displayMode = event.value;
   }
 
 }
