@@ -1,21 +1,33 @@
 <ng-container [ngSwitch]="displayMode">
     <ng-container *ngSwitchCase="'storyTitle'" [ngTemplateOutlet]="storyTitle"></ng-container>
     <ng-container *ngSwitchCase="'storySingle'" [ngTemplateOutlet]="storySingle"></ng-container>
-    <ng-container *ngSwitchDefault [ngTemplateOutlet]="storyFull"></ng-container>
+    <ng-container *ngSwitchDefault [ngTemplateOutlet]="storyList"></ng-container>
 </ng-container>
 
 <ng-template #storyTitle>
     <h2>{{ story.title }}</h2>
 </ng-template>
 
-<ng-template #storyFull>
+<ng-template #storyList>
     <h1>{{ story.title }}</h1>
-    <div *ngIf="!story.isPublished; else notPublished">
+        <div class="story-container">
+            <div class="flex">
+                <div>
+                    <h2>{{story.title}}</h2>
+                    <p class="story-social-refs"><span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span> <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span></p>
+                </div>
+                <!-- <button mat-button color="primary" (click)="editStory(story)">Редагувати</button> -->
+            </div>
+            <p>{{story.text}}</p>
+            <div class="story-image-wrap"><img class="story-image" [src]="story.image" /></div>                    
+        </div>
+
+    <!-- <div *ngIf="!story.isPublished; else notPublished">
         <div class="text">{{ story.text }}</div>
         <div class="image">{{ story.image }}</div>
         <div class="facebookProfile">{{ story.facebookProfile }}</div>
         <div class="instagramProfile">{{ story.instagramProfile }}</div>
-    </div>
+    </div> -->
 </ng-template>
 
 <ng-template #storySingle>

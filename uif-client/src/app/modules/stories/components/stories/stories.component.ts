@@ -12,7 +12,7 @@ import { StoryDialogComponent, StoryDialogResult } from '../add-story/story-dial
 })
 export class StoriesComponent implements OnInit, OnDestroy {
 
-  displayMode: StoryDisplayMode = 'storySingle';
+  displayMode: StoryDisplayMode = 'storyList';
   storySingleIndex: number = 0;
 
   afsStoriesCollection: AngularFirestoreCollection<Story> = this.store.collection('stories');

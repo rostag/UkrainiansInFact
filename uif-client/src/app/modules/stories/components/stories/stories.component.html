@@ -14,20 +14,9 @@
     <div>Show as: {{displayMode}}</div>
 
     <ng-template #storyList>
-        <div class="stories-flex" >
-            <div *ngFor="let story of stories | async" >
-                <div class="story-container">
-                    <div class="flex">
-                        <div>
-                            <h2>{{story.title}}</h2>
-                            <p class="story-social-refs"><span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span> <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span></p>
-                        </div>
-                        <button mat-button color="primary" (click)="editStory(story)">Редагувати</button>
-                    </div>
-                    <p>{{story.text}}</p>
-                    <div class="story-image-wrap"><img class="story-image" [src]="story.image" /></div>                    
-                </div>
-            </div>
+        <div class="stories-flex">
+            <app-story *ngFor="let story of stories | async" [story]="story" [displayMode]="'storyList'">
+            </app-story>
         </div>
     </ng-template>
 
