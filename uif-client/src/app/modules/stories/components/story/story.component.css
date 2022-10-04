@@ -1,0 +1,37 @@
+/* Story - Single */
+.story-single-wrap {
+    margin-top: 2em;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* Story - List */
+.story-list-wrap {
+    margin-top: 2em;
+}
+
+.story-image-wrap {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 1em;
+}
+
+.story-social-refs a {
+    color: #777;
+}
+
+.story-image {
+    max-width: 100%;
+    background: #fefefe;
+}
+
+/* Reused classes */
+.story-social-refs {
+    font-size: 0.8em;
+    color: #777;
+    font-weight: bold;
+}

@@ -11,12 +11,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { StoryDialogComponent } from './components/add-story/story-dialog.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
     StoriesComponent,
     StoryComponent,
-    StoryDialogComponent
+    StoryDialogComponent,
+    SafeHtmlPipe
   ],
   imports: [
     CommonModule,
@@ -24,6 +27,7 @@ import { StoryDialogComponent } from './components/add-story/story-dialog.compon
     MatCardModule,
     MatInputModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatIconModule,
     MatDialogModule,
     FormsModule

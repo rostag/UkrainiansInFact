@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Story, StoryDisplayMode } from '../../story';
 
 @Component({
@@ -20,10 +20,16 @@ export class StoryComponent implements OnInit {
     instagramProfile: ''
   };
 
+  @Output() edit = new EventEmitter<Story>();
+
   constructor() { 
   }
 
   ngOnInit(): void {
+  }
+
+  editStory(story: Story) {
+    this.edit.emit(story);
   }
 
 }
