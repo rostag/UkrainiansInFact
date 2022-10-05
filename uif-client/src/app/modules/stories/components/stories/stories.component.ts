@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { Story, StoryDisplayMode } from '../../story';
@@ -12,8 +13,7 @@ import { StoryDialogComponent, StoryDialogResult } from '../add-story/story-dial
 })
 export class StoriesComponent implements OnInit, OnDestroy {
 
-  displayMode: StoryDisplayMode = 'storyList';
-  storySingleIndex: number = 0;
+  displayMode: StoryDisplayMode = 'storySingle';
 
   afsStoriesCollection: AngularFirestoreCollection<Story> = this.store.collection('stories');
   stories = this.getStoriesObservable(this.afsStoriesCollection) as Observable<Story[]>;
@@ -41,6 +41,11 @@ export class StoriesComponent implements OnInit, OnDestroy {
       subj.next(value);
     });
     return subj;
+  }
+
+  getRandomStory() {
+    const rnd = Math.floor(Math.random() * this.storiesResult?.length);
+    return this.getStoryFromResult(rnd)
   }
 
   getStoryFromResult(index: number) {
@@ -81,6 +86,13 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
   deleteStory(story: Story) {
     this.afsStoriesCollection.doc(story.id).delete();
+  }
+
+  setDisplayMode(event: MatButtonToggleChange) {
+    this.displayMode = event.value;
+    if (this.displayMode === 'storyTitle') {
+      this.storiesResult.forEach(s => s.isExpanded = false);
+    }
   }
 
 }

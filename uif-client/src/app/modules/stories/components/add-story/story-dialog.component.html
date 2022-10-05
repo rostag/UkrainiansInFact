@@ -1,41 +1,31 @@
-<div class="control-container">
-    <mat-form-field>
+<div class="dialog-wrap">
+    <mat-form-field class="story-title">
         <mat-label>Заголовок</mat-label>
         <input matInput cdkFocusInitial [(ngModel)]="data.story.title" />
     </mat-form-field>
-</div>
-<div class="control-container">
-    <mat-form-field class="text-container">
+    <mat-form-field class="text-wrap">
         <mat-label>Історія</mat-label>
-        <textarea matInput [(ngModel)]="data.story.text" class="text"></textarea>
+        <textarea matInput [(ngModel)]="data.story.text" class="text-area"></textarea>
     </mat-form-field>
-</div>
-<div class="control-container">
-    <mat-form-field>
+    <mat-form-field class="text-wrap">
         <mat-label>Шлях до зображення</mat-label>
         <input matInput [(ngModel)]="data.story.image" />
     </mat-form-field>
-</div>
-<div class="control-container">
-    <mat-form-field>
+    <mat-form-field class="text-wrap social-ref">
         <mat-label>Профіль у Facebook</mat-label>
         <input matInput [(ngModel)]="data.story.facebookProfile" />
     </mat-form-field>
-</div>
-<div class="control-container">
-    <mat-form-field>
+    <mat-form-field class="text-wrap social-ref">
         <mat-label>Профіль у Instagram</mat-label>
         <input matInput [(ngModel)]="data.story.instagramProfile" />
     </mat-form-field>
-</div>
-<div class="control-container">
-    <mat-form-field>
-        <mat-label>Код для вставки з інстаграму</mat-label>
+    <mat-form-field class="text-wrap">
+        <mat-label>Код для вставки з інстаграму (тестовий режим)</mat-label>
         <input matInput [(ngModel)]="data.story.instagramEmbedCode" />
     </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
     <button mat-button mat-flat-button color="primary" [mat-dialog-close]="{ story: data.story }">OK</button>
-    <button mat-button (click)="cancel()">Відміна</button>
+    <button mat-button (click)="cancel()">Відхилити зміни</button>
 </div>

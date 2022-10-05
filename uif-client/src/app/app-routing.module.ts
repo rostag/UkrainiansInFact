@@ -5,7 +5,7 @@ import { AuthGuard } from './modules/auth/services';
 
 const routes: Routes = [
   { path: 'whats-next', redirectTo: 'main/whats-next' },
-  { path: 'stories', loadChildren: () => import('./modules/stories/stories.module').then(m => m.StoriesModule), canActivate: [AuthGuard] },
+  { path: 'stories', loadChildren: () => import('./modules/stories/stories.module').then(m => m.StoriesModule) },
   { path: 'tasks', loadChildren: () => import('./modules/tasks/tasks.module').then(m => m.TasksModule), canActivate: [AuthGuard] },
   { path: 'main', loadChildren: () => import('./modules/main/main.module').then(m => m.MainModule) },
   { path: 'about', component: AboutComponent },
@@ -17,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true }) ],
+  imports: [RouterModule.forRoot(routes) ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

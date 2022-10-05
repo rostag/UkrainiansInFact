@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Story, StoryDisplayMode } from '../../story';
 
 @Component({
@@ -20,10 +20,22 @@ export class StoryComponent implements OnInit {
     instagramProfile: ''
   };
 
+  @Output() edit = new EventEmitter<Story>();
+
   constructor() { 
   }
 
   ngOnInit(): void {
+  }
+
+  editStory(story: Story) {
+    window.alert('Функція тимчасово доступна лише розробникам - для запобігання втрати правок. Скоро ми це виправимо. До речі, додавати історії можна вже зараз!')
+    return;
+    // this.edit.emit(story);
+  }
+
+  toggleStory(story: Story) {
+    story.isExpanded = !story.isExpanded;
   }
 
 }

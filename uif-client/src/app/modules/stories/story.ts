@@ -7,6 +7,7 @@ export interface Story {
     facebookProfile: string;
     instagramProfile: string;
     instagramEmbedCode?: string;
+    isExpanded?: boolean;
 }
 
 export type StoryDisplayMode = 'storyList' | 'storyCarousel' | 'storyTitle' | 'storySingle';

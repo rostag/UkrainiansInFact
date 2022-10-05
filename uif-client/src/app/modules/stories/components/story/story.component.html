@@ -5,38 +5,59 @@
 </ng-container>
 
 <ng-template #storyTitle>
-    <h2>{{ story.title }}</h2>
-</ng-template>
-
-<ng-template #storyList>
-    <h1>{{ story.title }}</h1>
-        <div class="story-container">
-            <div class="flex">
-                <div>
-                    <h2>{{story.title}}</h2>
-                    <p class="story-social-refs"><span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span> <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span></p>
-                </div>
-                <!-- <button mat-button color="primary" (click)="editStory(story)">Редагувати</button> -->
-            </div>
-            <p>{{story.text}}</p>
-            <div class="story-image-wrap"><img class="story-image" [src]="story.image" /></div>                    
+    <div class="story-single-wrap story-title-wrap" *ngIf="!!story; else loading">
+        <div class="flex-row">
+            <h2 (click)="toggleStory(story)">{{ story.title }}</h2>
+            <button mat-button color="accent" (click)="editStory(story)">Змінити</button>
         </div>
-
-    <!-- <div *ngIf="!story.isPublished; else notPublished">
-        <div class="text">{{ story.text }}</div>
-        <div class="image">{{ story.image }}</div>
-        <div class="facebookProfile">{{ story.facebookProfile }}</div>
-        <div class="instagramProfile">{{ story.instagramProfile }}</div>
-    </div> -->
+        <div *ngIf="story.isExpanded">
+            <div *ngIf="!story.isPublished; else notPublished">
+                <div class="text" [innerHtml]="story.text | safeHtml"></div>
+                <div class="story-single-image-wrap"><img class="story-image" [src]="story.image" /></div>
+                <div class="story-social-refs">
+                    <span>Cторінки в соцмережах: </span>
+                    <span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span>
+                    <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-template>
 
 <ng-template #storySingle>
-    <h1>{{ story.title }}</h1>
-    <div *ngIf="!story.isPublished; else notPublished">
-        <div class="text">{{ story.text }}</div>
-        <div class="image">{{ story.image }}</div>
-        <div class="facebookProfile">{{ story.facebookProfile }}</div>
-        <div class="instagramProfile">{{ story.instagramProfile }}</div>
+    <div class="story-single-wrap" *ngIf="!!story; else loading">
+        <div class="flex-row">
+            <h2>{{ story.title }}</h2>
+            <button mat-button color="accent" (click)="editStory(story)">Змінити</button>
+        </div>
+        <div *ngIf="!story.isPublished; else notPublished">
+            <div class="text" [innerHtml]="story.text | safeHtml"></div>
+            <div class="story-single-image-wrap"><img class="story-image" [src]="story.image" /></div>
+            <div class="story-social-refs">
+                <span>Cторінки в соцмережах: </span>
+                <span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span>
+                <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #storyList>
+    <div class="story-list-wrap" *ngIf="!!story; else loading">
+        <div class="flex">
+            <div>
+                <h2>{{story.title}}</h2>
+                <div class="story-social-refs">
+                    <span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span>
+                    <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span>
+                </div>
+            </div>
+            <button mat-button color="primary" (click)="editStory(story)">Змінити</button>
+        </div>
+        <div *ngIf="!story.isPublished; else notPublished">
+            <div class="text" [innerHtml]="story.text | safeHtml"></div>
+            <div class="story-image-wrap"><img class="story-image" [src]="story.image" /></div>
+        </div>
     </div>
 </ng-template>
 
@@ -44,6 +65,6 @@
     Ця історія ще не опублікована
 </ng-template>
 
-<div *ngIf="!story">
-    Ця історія ще не існує
-</div>
+<ng-template #loading>
+    Завантажуємо...
+</ng-template>

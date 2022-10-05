@@ -1,0 +1,77 @@
+:host {
+    font-size: 16px;
+    line-height: 1.8rem;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+h1, h2, h3, h4, h5, h6, div, p, li, ol, ul {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.content-wrap {
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div, p {
+    font-size: 1rem;
+}
+
+/* Story - Single */
+.story-single-wrap {
+    margin-top: 2rem;
+    max-width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.story-single-image-wrap {
+    max-width: 100%;
+    margin-top: 2rem;
+}
+
+
+/* Story - List */
+.story-list-wrap {
+    margin-top: 2rem;
+}
+
+.story-image-wrap {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.story-image {
+    max-width: 100%;
+    background: #fefefe;
+}
+
+.story-title-wrap h2 {
+    cursor: pointer;
+}
+
+.story-title-wrap h2:hover {
+    text-decoration: underline;
+    color: #31a4ee;
+}
+
+/* Reused classes */
+.story-social-refs {
+    font-size: 0.8rem;
+}
