@@ -14,7 +14,6 @@ import { StoryDialogComponent, StoryDialogResult } from '../add-story/story-dial
 export class StoriesComponent implements OnInit, OnDestroy {
 
   displayMode: StoryDisplayMode = 'storySingle';
-  storySingleIndex: number = 0;
 
   afsStoriesCollection: AngularFirestoreCollection<Story> = this.store.collection('stories');
   stories = this.getStoriesObservable(this.afsStoriesCollection) as Observable<Story[]>;
@@ -42,6 +41,11 @@ export class StoriesComponent implements OnInit, OnDestroy {
       subj.next(value);
     });
     return subj;
+  }
+
+  getRandomStory() {
+    const rnd = Math.floor(Math.random() * this.storiesResult?.length);
+    return this.getStoryFromResult(rnd)
   }
 
   getStoryFromResult(index: number) {
@@ -86,6 +90,9 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
   setDisplayMode(event: MatButtonToggleChange) {
     this.displayMode = event.value;
+    if (this.displayMode === 'storyTitle') {
+      this.storiesResult.forEach(s => s.isExpanded = false);
+    }
   }
 
 }

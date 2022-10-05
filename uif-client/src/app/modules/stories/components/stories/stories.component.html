@@ -1,14 +1,16 @@
 <div class="wrap">
-    <div class="flex">    
+    <div class="center-aligned">    
         <h1>Особисті історії</h1>
-        <button mat-button color="primary" (click)="addStory()" class="add-button">+</button>
+        <button mat-icon-button color="accent" (click)="addStory()" class="add-button"><mat-icon>add</mat-icon></button>
     </div>
 
-    <mat-button-toggle-group name="displayMode" aria-label="Режим відображення історій" (change)="setDisplayMode($event)">
-        <mat-button-toggle value="storySingle">Особиста історія</mat-button-toggle>
-        <mat-button-toggle value="storyTitle">Заголовки</mat-button-toggle>
-        <mat-button-toggle value="storyList">Одним списком</mat-button-toggle>
-    </mat-button-toggle-group>
+    <div class="center-aligned"> 
+        <mat-button-toggle-group class="display-mode-toggle" name="displayMode" aria-label="Режим відображення історій" (change)="setDisplayMode($event)">
+            <mat-button-toggle value="storySingle">Випадкова історія</mat-button-toggle>
+            <mat-button-toggle value="storyTitle">Заголовки</mat-button-toggle>
+            <mat-button-toggle value="storyList">Одним списком</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div> 
 
     <ng-container [ngSwitch]="displayMode">
         <ng-container *ngSwitchCase="'storyCarousel'" [ngTemplateOutlet]="storyCarousel"></ng-container>
@@ -30,7 +32,7 @@
     </ng-template>
 
     <ng-template #storySingle>
-      <app-story [story]="getStoryFromResult(0)" [displayMode]="'storySingle'" (edit)="editStory($event)">
+      <app-story [story]="getRandomStory()" [displayMode]="'storySingle'" (edit)="editStory($event)">
       </app-story>
     </ng-template>
 
@@ -40,4 +42,15 @@
     </ng-template>
 
     <div class="spacer"></div>
+
+    <!-- <div class="dev-section">
+        <h2>Для розробників</h2>
+        <p>Режим відображення історій:</p>
+        <mat-button-toggle-group name="displayMode" aria-label="Режим відображення історій" (change)="setDisplayMode($event)">
+            <mat-button-toggle value="storySingle">Особиста історія</mat-button-toggle>
+            <mat-button-toggle value="storyTitle">Заголовки</mat-button-toggle>
+            <mat-button-toggle value="storyList">Одним списком</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div> -->
+
 </div>

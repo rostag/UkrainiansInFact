@@ -29,7 +29,13 @@ export class StoryComponent implements OnInit {
   }
 
   editStory(story: Story) {
-    this.edit.emit(story);
+    window.alert('Функція тимчасово доступна лише розробникам - для запобігання втрати правок. Скоро ми це виправимо. До речі, додавати історії можна вже зараз!')
+    return;
+    // this.edit.emit(story);
+  }
+
+  toggleStory(story: Story) {
+    story.isExpanded = !story.isExpanded;
   }
 
 }
