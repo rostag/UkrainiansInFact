@@ -28,16 +28,10 @@
     text-shadow: #002b4b 1px 1px 5px;
 }
 
-.content-wrapper {
-    max-width: 1400px;
-    margin: auto;
-    padding: 6em 4em;
-}
-
 .toolbar-spacer {
     flex: 1 1 auto;
 }
 
-.spacer {
+.footer-spacer {
     height: 60px;
 }
