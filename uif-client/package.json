@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "get-stats": "ng build --stats-json > unbundling-stats.txt && webpack-bundle-analyzer dist/uif-client/stats.json",
-    "emulate-ts-functions": "cd functions && npm run serve",
+    "fun": "cd functions && npm run serve",
+    "emu": "cd functions && npm run build && firebase emulators:start",
     "deploy-functions": "firebase deploy --only functions"
   },
   "private": true,

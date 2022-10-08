@@ -11,12 +11,14 @@ import { AuthService } from '../../services/auth/auth.service';
 export class UsersComponent implements OnInit {
 
   makeAdmin(user: User) {
-    this.auth.makeAdmin(user);
+    this.auth.makeAdmin(user).subscribe((res) => {
+      console.log('claims are set:', res);
+    });
   }
 
   getClaims(user: User) {
-    this.auth.getClaims(user).subscribe(res => {
-      console.log('res: ', res);
+    this.auth.getClaims(user).subscribe((res) => {
+      console.log('get claims: ', res);
     });
   }
 
