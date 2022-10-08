@@ -19,5 +19,5 @@ Logging Analytics:
 ng g c modules/main/components/whats-next --dry-run
 
 ## Firebase typescript functions
-<https://firebase.google.com/docs/functions/typescript>
 
+<https://firebase.google.com/docs/functions/typescript>

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { UsersComponent } from './components/users/users.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
+  { path: 'users', component: UsersComponent },
 ];
 
 @NgModule({

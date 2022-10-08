@@ -1,0 +1,8 @@
+<h2>All Users:</h2>
+<div class="user-row" *ngFor="let user of allUsers | async">
+    <span class="email">{{user.email}}</span>
+    <span class="displayName">{{user.displayName}}</span>
+    <span class="uid">{{user.uid}}</span>
+    <span><button mat-button class="makeAdmin" (click)="makeAdmin(user)">Make Admin</button></span>
+    <span><button mat-button class="getClaims" (click)="getClaims(user)">Get Claims</button></span>
+</div>

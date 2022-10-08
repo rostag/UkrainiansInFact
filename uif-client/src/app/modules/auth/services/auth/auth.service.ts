@@ -7,15 +7,22 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { User } from '../user';
-import { FirebaseError } from '@angular/fire/app';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FirebaseError } from '@angular/fire/app';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/functions';
+import { from, Observable } from 'rxjs';
+import { HttpsCallableResult } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  
   userData: any; // Save logged in user data
   constructor(
+    public afdb: AngularFireDatabase, // Inject Firestore service
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
@@ -100,6 +107,39 @@ export class AuthService {
       })
       .catch((error) => this.showAuthError(error));
   }
+
+  getAllUsers(): Observable<auth.User[]> {
+    var getAllUsers = firebase.functions().httpsCallable('getAllUsers');
+    const promise = getAllUsers({ numberOfUsers: 100 })
+      .then((result: HttpsCallableResult) => {
+        console.log('response:', result);
+        return result.data as auth.User[];
+      });
+    return from(promise);
+  }
+
+  makeAdmin(user: auth.User) {
+    var setUserClaims = firebase.functions().httpsCallable('setUserClaims');
+
+    const promise = setUserClaims({ uid: user.uid, claims: { admin: true, editor: false } })
+      .then((result: HttpsCallableResult) => {
+        console.log('setUserClaims response:', result);
+        return result.data;
+      });
+    return from(promise);
+  }
+
+  getClaims(user: auth.User) {
+    var getUserClaims = firebase.functions().httpsCallable('getUserClaims');
+
+    const promise = getUserClaims({ uid: user.uid })
+      .then((result: HttpsCallableResult) => {
+        console.log('response:', result);
+        return result.data;
+      });
+    return from(promise);
+  }
+
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
@@ -114,10 +154,29 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
     };
+    // this.setRole(user);
     return userRef.set(userData, {
       merge: true,
     });
   }
+
+  // setRole(currentUser: any) {
+  //   currentUser.getIdTokenResult()
+  //   .then((idTokenResult: any) => {
+  //     // Confirm the user is an Admin.
+  //     if (!!idTokenResult.claims.admin) {
+  //       // Show admin UI.
+  //       this.showAdminUI();
+  //     } else {
+  //       // Show regular user UI.
+  //       this.showRegularUI();
+  //     }
+  //   })
+  //   .catch((error: Error) => {
+  //     console.log(error);
+  //   });
+  // }
+
   // Sign out
   signOut() {
     return this.afAuth.signOut().then(() => {
