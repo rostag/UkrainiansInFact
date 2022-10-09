@@ -33,6 +33,25 @@
     font-weight: 500;
 }
 
+.action {
+    padding: 0 16px;
+}
+
 .claim {
     display: inline-block;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.roles {
+    background-color: crimson;
+    margin-left: 16px;
+    padding-left: 16px;
+}
+
+.role {
+    font-size: .7rem;
+    margin-right: 1rem;
 }
