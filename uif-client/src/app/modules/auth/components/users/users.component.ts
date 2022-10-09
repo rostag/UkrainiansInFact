@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '@angular/fire/auth';
 import { Observable, of } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
+import { User } from '../../services/user';
 
 @Component({
   selector: 'app-users',
@@ -10,6 +10,14 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class UsersComponent implements OnInit {
 
+  allUsers: Observable<User[]> = of([]);
+
+  constructor(private auth: AuthService) { }
+
+  ngOnInit(): void {
+    this.allUsers = this.auth.getAllUsers();
+  }
+
   makeAdmin(user: User) {
     this.auth.makeAdmin(user).subscribe((res) => {
       console.log('claims are set:', res);
@@ -17,16 +25,19 @@ export class UsersComponent implements OnInit {
   }
 
   getClaims(user: User) {
+    user.parsedClaims = [];
     this.auth.getClaims(user).subscribe((res) => {
       console.log('get claims: ', res);
+      if (res['admin']) {
+        user.parsedClaims.push('admin');
+      }
+      if (res['editor']) {
+        user.parsedClaims.push('editor');
+      }
     });
   }
 
-  allUsers: Observable<User[]> = of([]);
-  constructor(private auth: AuthService) { }
-
-  ngOnInit(): void {
-    this.allUsers = this.auth.getAllUsers();
-  }
-  
+  showUser(user: User) {
+    this.getClaims(user);
+  }  
 }

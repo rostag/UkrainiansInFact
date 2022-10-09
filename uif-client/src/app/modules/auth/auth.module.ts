@@ -10,6 +10,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UsersComponent } from './components/users/users.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UsersComponent } from './components/users/users.component';
     VerifyEmailComponent,
     SignInComponent,
     SignUpComponent,
-    UsersComponent
+    UsersComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
