@@ -2,8 +2,14 @@
     display: block;
 }
 
+.cell {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
 .user-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-items: flex-start;
     font-size: .7rem;
@@ -11,23 +17,22 @@
 
 .displayName {
     width: 10rem;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
 }
 
 .email {
     width: 12rem;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
 }
 
 .uid {
-    width: 6rem;
+    width: 2rem;
     color: #777;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
 }
 
-.makeAdmin {
+.action {
     font-size: .7rem;
+    font-weight: 500;
+}
+
+.claim {
+    display: inline-block;
 }

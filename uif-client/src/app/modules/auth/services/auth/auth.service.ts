@@ -1,5 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
+import { ParsedToken } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import {
@@ -108,21 +109,21 @@ export class AuthService {
       .catch((error) => this.showAuthError(error));
   }
 
-  getAllUsers(): Observable<auth.User[]> {
+  getAllUsers(): Observable<User[]> {
     var getAllUsers = firebase.functions().httpsCallable('getAllUsers');
     const promise = getAllUsers({ numberOfUsers: 100 })
       .then((result: HttpsCallableResult) => {
-        return result.data as auth.User[];
+        return result.data as User[];
       });
     return from(promise);
   }
 
-  getClaims(user: auth.User) {
+  getClaims(user: User): Observable<ParsedToken> {
     var getUserClaims = firebase.functions().httpsCallable('getUserClaims');
 
     const promise = getUserClaims({ uid: user.uid })
       .then((result: HttpsCallableResult) => {
-        return result.data;
+        return result.data as ParsedToken;
       });
     return from(promise);
   }
@@ -161,8 +162,8 @@ export class AuthService {
     // });
   }
 
-  makeAdmin(user: auth.User) {
-    return this.setUserClaims(user, {admin: true, editor: true});
+  makeAdmin(user: User) {
+    return this.setUserClaims(user, {admin: true, editor: false});
   }
 
   /* Setting up user data when sign in with username/password, 
@@ -172,7 +173,7 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
-    const userData: User = {
+    const userData: Partial<User> = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
@@ -223,5 +224,9 @@ export class AuthService {
     const message = JSON.stringify(error, null, 2);
     let messageText = `Помилка: ${this.messageMap.get(error.code) || error.code || ' деталі невідомі. Спробуйте ще раз.'}`;
     this._snackBar.open(messageText, 'OK', { verticalPosition: 'top' });
+  }
+
+  navigateToUserDetails(user: User) {
+    this.router.navigate(['/user', user.uid])
   }
 }
