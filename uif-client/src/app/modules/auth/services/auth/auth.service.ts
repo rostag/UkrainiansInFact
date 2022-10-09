@@ -162,10 +162,6 @@ export class AuthService {
     // });
   }
 
-  makeAdmin(user: User) {
-    return this.setUserClaims(user, {admin: true, editor: false});
-  }
-
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */

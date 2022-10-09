@@ -2,11 +2,9 @@
     <span class="cell email">{{user.email}}</span>
     <span class="cell displayName">{{user.displayName}}</span>
     <span class="cell uid">{{user.uid}}</span>
-    <span><button mat-button class="cell action makeAdmin" (click)="makeAdmin(user)">Make Admin</button></span>
     <span><button mat-button class="cell action getClaims" (click)="getClaims(user)">Get Claims</button></span>
-    
-    <!-- <div class="user-row" *ngFor="let claim of user.claims | async">
-    </div> -->
+    <div class="user-row" *ngFor="let claim of user.parsedClaims">
+    </div>
 </div>
 
 <ng-template #loading>Loading...</ng-template>
