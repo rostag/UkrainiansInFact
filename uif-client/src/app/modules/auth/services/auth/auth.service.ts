@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 import * as auth from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/functions';
-import { from, Observable } from 'rxjs';
-import { User } from '../user';
+import { from, Observable, of } from 'rxjs';
+import { User, UserRole, userRoleDisplayNames, UserRoleName } from '../user';
 
 @Injectable({
   providedIn: 'root',
@@ -110,7 +110,7 @@ export class AuthService {
   }
 
   getAllUsers(): Observable<User[]> {
-    var getAllUsers = firebase.functions().httpsCallable('getAllUsers');
+    const getAllUsers = firebase.functions().httpsCallable('getAllUsers');
     const promise = getAllUsers({ numberOfUsers: 100 })
       .then((result: HttpsCallableResult) => {
         return result.data as User[];
@@ -118,48 +118,51 @@ export class AuthService {
     return from(promise);
   }
 
-  getClaims(user: User): Observable<ParsedToken> {
-    var getUserClaims = firebase.functions().httpsCallable('getUserClaims');
-
-    const promise = getUserClaims({ uid: user.uid })
+  getUserById(uid: string): Observable<User> {
+    const getUserById = firebase.functions().httpsCallable('getUserById');
+    return from(getUserById({ uid })
       .then((result: HttpsCallableResult) => {
-        return result.data as ParsedToken;
-      });
-    return from(promise);
+        return result.data as User;
+      }));
   }
 
-  setUserClaims(user: any, claims: any) {
-    let tkn;
-    this.afAuth.idToken.pipe().subscribe((tk) => {
-      tkn = tk;
-    });
+  userHasClaims(user: User) {
+    return user?.parsedClaims;
+  }
 
-    var setUserClaims = firebase.functions().httpsCallable('setUserClaims');
-    
-    const promise = setUserClaims({
+  getUserClaims(user: User): Observable<User> {
+    if (this.userHasClaims(user)) {
+      return of(user);
+    }
+    const getUserClaims = firebase.functions().httpsCallable('getUserClaims');
+    user.parsedClaims = [];
+
+    return from(getUserClaims({ uid: user.uid })
+      .then((result: HttpsCallableResult) => {
+        Object.entries(result.data as ParsedToken).forEach((claim) => {
+          const roleName = claim[0] as UserRoleName;
+          user.parsedClaims.push({ name: roleName, enabled: claim[1], displayName: userRoleDisplayNames.get(roleName) });
+        })
+        return user;
+      }));
+  }
+
+  setUserClaims(user: User, role: UserRole) {
+    const claims: any = {};
+
+    user.parsedClaims.find(claim => claim.name === role.name)!.enabled = role.enabled;
+    user.parsedClaims.forEach((c) => {
+      claims[c.name] = c.enabled;
+    })
+
+    return from(firebase.functions().httpsCallable('setUserClaims')({
       uid: user.uid,
-      claims: claims,
-      idToken: tkn
+      claims,
     })
-    .then((result: HttpsCallableResult) => {
-      return result.data;
-    })
+    .then((result: HttpsCallableResult) => result)
     .catch(function(error) {
       console.log('e:', error);  
-    });
-
-    return from(promise);
-
-      // This is not required. You could just wait until the token is expired
-      // and it proactively refreshes.
-      // if (status == 'success' && data) {
-      //   const json = JSON.parse(data);
-      //   if (json && json.status == 'success') {
-      //     // Force token refresh. The token claims will contain the additional claims.
-      //     this.afAuth.currentUser.getIdToken(true);
-      //   }
-      // }
-    // });
+    }));
   }
 
   /* Setting up user data when sign in with username/password, 

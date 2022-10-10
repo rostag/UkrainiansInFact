@@ -20,6 +20,15 @@ export const getAllUsers = functions.https.onCall(async (data) => {
     });
 });
 
+export const getUserById = functions.https.onCall(async (data) => {
+  return getAuth()
+    .getUser(data.uid)
+    .then((getUserResult) => getUserResult)
+    .catch((error) => {
+      console.log("Error getting user:", error);
+    });
+});
+
 // Lookup the user associated with the specified uid.
 export const getUserClaims = functions.https.onCall(async (data) => {
   return getAuth()
@@ -32,8 +41,8 @@ export const getUserClaims = functions.https.onCall(async (data) => {
     });
 });
 
-// Set admin privilege on the user corresponding to uid.
-export const setUserClaims = functions.https.onCall(async (data: { uid: string, claims: any, idToken: string }) => {
+// Set user roles on the user corresponding to uid.
+export const setUserClaims = functions.https.onCall(async (data: { uid: string, claims: any }) => {
   return getAuth()
     .setCustomUserClaims(data.uid, data.claims)
     .then((result) => {
