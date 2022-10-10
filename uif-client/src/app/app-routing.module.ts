@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'tasks', loadChildren: () => import('./modules/tasks/tasks.module').then(m => m.TasksModule), canActivate: [AuthGuard] },
   { path: 'main', loadChildren: () => import('./modules/main/main.module').then(m => m.MainModule) },
   { path: 'about', component: AboutComponent },
-  { path: 'user/:id', component: UserComponent },
+  { path: 'user/:uid', component: UserComponent },
   { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
   { path: '404', loadChildren: () => import('./modules/not-found/not-found.module').then(m => m.NotFoundModule) },
   // The empty path matches everything that doesn't match an earlier path

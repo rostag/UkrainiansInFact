@@ -20,6 +20,15 @@ export const getAllUsers = functions.https.onCall(async (data) => {
     });
 });
 
+export const getUserById = functions.https.onCall(async (data) => {
+  return getAuth()
+    .getUser(data.uid)
+    .then((getUserResult) => getUserResult)
+    .catch((error) => {
+      console.log("Error getting user:", error);
+    });
+});
+
 // Lookup the user associated with the specified uid.
 export const getUserClaims = functions.https.onCall(async (data) => {
   return getAuth()

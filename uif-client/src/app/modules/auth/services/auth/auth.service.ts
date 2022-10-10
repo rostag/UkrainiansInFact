@@ -118,6 +118,14 @@ export class AuthService {
     return from(promise);
   }
 
+  getUserById(uid: string): Observable<User> {
+    var getUserById = firebase.functions().httpsCallable('getUserById');
+    return from(getUserById({ uid })
+      .then((result: HttpsCallableResult) => {
+        return result.data as User;
+      }));
+  }
+
   getClaims(user: User): Observable<ParsedToken> {
     var getUserClaims = firebase.functions().httpsCallable('getUserClaims');
 
