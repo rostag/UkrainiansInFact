@@ -1,9 +1,12 @@
-<div *ngIf="!!user; else loading">
+<div *ngIf="!!user; else loading" class="user-wrap">
+    <h1 class="cell displayName">{{user.displayName}}</h1>
     <span class="cell email">{{user.email}}</span>
-    <span class="cell displayName">{{user.displayName}}</span>
     <span class="cell uid">{{user.uid}}</span>
-    <span><button mat-button class="cell action getClaims" (click)="getClaims(user)">Get Claims</button></span>
-    <div class="user-row" *ngFor="let claim of user.parsedClaims">
+    <h2>Ролі: </h2>
+    <div *ngIf="auth.userHasClaims(user)" class="roles role">
+        <span class="role" *ngFor="let role of user?.parsedClaims">
+            <mat-checkbox color="warn" (ngModelChange)="enableRoleForUser($event, user, role)" [ngModel]="role.enabled">{{role.displayName}}</mat-checkbox>
+        </span>
     </div>
 </div>
 

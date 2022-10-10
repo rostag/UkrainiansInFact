@@ -1,8 +1,17 @@
 import * as auth from 'firebase/auth';
 
-export type UserRole = 'admin' | 'editor';
+export type UserRoleName = 'admin' | 'editor';
+export interface UserRole {
+    name: UserRoleName;
+    enabled: boolean;
+    displayName?: string;
+}
 
-export const userRoles: UserRole[] = ['admin', 'editor'];
+export const userRoleDisplayNames = new Map<UserRoleName, string>([
+    ['admin', 'Адмін'],
+    ['editor', 'Редактор']
+]);
+
 export interface User extends auth.User {
     uid: string;
     email: string;

@@ -1,4 +1,4 @@
-<h2>All Users:</h2>
+<h2>Юзери</h2>
 <div class="user-row header">
     <span class="cell displayName">Ім'я</span>
     <span class="cell email">Email</span>
@@ -6,14 +6,14 @@
     <span class="cell action">Дозволи</span>
 </div>
 <div class="user-row" *ngFor="let user of allUsers | async">
-    <span class="cell displayName">{{user.displayName}}</span>
+    <span class="cell displayName" (click)="navigateToUser(user)">{{user.displayName}}</span>
     <span class="cell email">{{user.email}}</span>
     <span class="cell uid">{{user.uid}}</span>
     <span><button mat-button class="cell action" (click)="showUser(user)">Показати</button>
-        <div *ngIf="hasClaims(user)" class="roles role">
-            Ця дія встановлює ролі в системі
-            <span class="role" *ngFor="let role of userRoles">
-                <mat-checkbox color="warn" (ngModelChange)="enableRoleForUser(user, role)" [ngModel]="userHasRoleEnabled(user, role)">{{role}}</mat-checkbox>
+        <div *ngIf="auth.userHasClaims(user)" class="roles role">
+            <span class="role">Це задає ролі в системі!</span>
+            <span class="role" *ngFor="let role of user?.parsedClaims">
+                <mat-checkbox color="warn" (ngModelChange)="enableRoleForUser($event, user, role)" [ngModel]="role.enabled">{{role.displayName}}</mat-checkbox>
             </span>
         </div>
     </span>

@@ -17,6 +17,7 @@
 
 .displayName {
     width: 10rem;
+    cursor: pointer;
 }
 
 .email {
@@ -46,9 +47,10 @@
 }
 
 .roles {
-    background-color: crimson;
+    background-color: darkorange;
     margin-left: 16px;
     padding-left: 16px;
+    border-radius: 1rem;
 }
 
 .role {
