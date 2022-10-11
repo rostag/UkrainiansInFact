@@ -1,6 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Item } from '@angular/fire/analytics';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { ActivatedRoute } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import * as firebase from 'firebase/compat';
+import { Observable, BehaviorSubject, combineLatest, switchMap } from 'rxjs';
 import { Story, StoryDisplayMode } from '../../story';
 
+@UntilDestroy()
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -10,28 +17,49 @@ export class StoryComponent implements OnInit {
 
   @Input() displayMode: StoryDisplayMode = 'storySingle';
 
-  @Input() story: Story = {
-    id: '',
-    title: '',
-    text: '',
-    image: '',
-    isPublished: false,
-    facebookProfile: '',
-    instagramProfile: ''
-  };
+  @Input() story!: Story;
 
   @Output() edit = new EventEmitter<Story>();
 
-  constructor() { 
-  }
+  storyPath: string = '';
 
+  items$: Observable<any[]>;
+  pathFilter$: BehaviorSubject<any>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private afStore: AngularFirestore
+    ) {
+      this.pathFilter$ = new BehaviorSubject(null);
+      this.items$ = this.pathFilter$.pipe(
+        switchMap((storyPath) => 
+          this.afStore.collection('stories', ref => {
+            let query : firebase.default.firestore.CollectionReference | firebase.default.firestore.Query = ref;
+            if (storyPath) { query = query.where('storyPath', '==', storyPath) };
+            return query;
+          }).valueChanges()
+        )
+      );    
+    }
+
+  filterStoryByPath(storyPath: string|null) {
+    this.pathFilter$.next(storyPath);
+    this.items$.pipe(untilDestroyed(this)).subscribe((stories) => {
+      this.story = stories[0] as Story
+    })
+  }
+  
   ngOnInit(): void {
+    if (!!this.story) {
+      return;
+    }
+    this.route.params.pipe(untilDestroyed(this)).subscribe(params => {
+      this.filterStoryByPath(params['storyPath']);
+    })    
   }
 
   editStory(story: Story) {
-    window.alert('Функція тимчасово доступна лише розробникам - для запобігання втрати правок. Скоро ми це виправимо. До речі, додавати історії можна вже зараз!')
-    return;
-    // this.edit.emit(story);
+    this.edit.emit(story);
   }
 
   toggleStory(story: Story) {

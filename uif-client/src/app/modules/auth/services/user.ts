@@ -18,5 +18,5 @@ export interface User extends auth.User {
     displayName: string;
     photoURL: string;
     emailVerified: boolean;
-    parsedClaims: UserRole[];
+    parsedClaims?: UserRole[];
 }

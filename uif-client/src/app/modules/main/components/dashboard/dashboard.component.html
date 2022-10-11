@@ -1,18 +1,12 @@
-<div class="pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Користувач</h1>
-</div>
+<h1 class="h2">Мій профіль</h1>
 <!-- Show user data when logged in -->
-<div class="row" *ngIf="authService.userData as user; else notLoggedIn">
-  <div class="col-md-12">
-    <div class="media">
-      <img class="img-thumbnail"
-        src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}" alt="{{user.displayName}}">
-      <div class="media-body">
-        <h2>{{user.displayName || 'Користувачеім’я'}}</h2>
-        <p>Email: {{user.email}} ({{user.emailVerified ? 'перевірено' : 'не перевірено'}})</p>
-        <p><a href="#" (click)="authService.signOut()">Вийти</a></p>
-      </div>
-    </div>
+<div *ngIf="authService.userData as user; else notLoggedIn">
+  <img class="img-thumbnail"
+    src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}" alt="{{user.displayName}}">
+  <div class="media-body">
+    <h2>{{user.displayName || 'Юзернейм'}}</h2>
+    <p>Email: {{user.email}} ({{user.emailVerified ? 'перевірений' : 'не перевірений'}})</p>
+    <p><a href="#" (click)="authService.signOut()">Вийти</a></p>
   </div>
 </div>
 <ng-template #notLoggedIn>

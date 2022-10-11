@@ -2,7 +2,6 @@ import { Injectable, NgZone } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
 import { ParsedToken } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
 import {
   AngularFirestore,
   AngularFirestoreDocument
@@ -16,14 +15,17 @@ import 'firebase/compat/functions';
 import { from, Observable, of } from 'rxjs';
 import { User, UserRole, userRoleDisplayNames, UserRoleName } from '../user';
 
+export interface UIFError extends FirebaseError {};
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   
-  userData: any; // Save logged in user data
+  userData!: User;
+  userIsAdmin = false;
+
   constructor(
-    public afdb: AngularFireDatabase, // Inject Firestore service
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
@@ -34,13 +36,14 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.userData = user;
+        this.userData = user as User;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
       } else {
         localStorage.setItem('user', 'null');
         JSON.parse(localStorage.getItem('user')!);
       }
+      this.detectUserRoles();
     });
   }
   // Sign in with email/password
@@ -130,9 +133,9 @@ export class AuthService {
     return user?.parsedClaims;
   }
 
-  getUserClaims(user: User): Observable<User> {
+  getUserClaims(user: User): Observable<UserRole[]> {
     if (this.userHasClaims(user)) {
-      return of(user);
+      return of(user.parsedClaims!);
     }
     const getUserClaims = firebase.functions().httpsCallable('getUserClaims');
     user.parsedClaims = [];
@@ -141,17 +144,17 @@ export class AuthService {
       .then((result: HttpsCallableResult) => {
         Object.entries(result.data as ParsedToken).forEach((claim) => {
           const roleName = claim[0] as UserRoleName;
-          user.parsedClaims.push({ name: roleName, enabled: claim[1], displayName: userRoleDisplayNames.get(roleName) });
+          user.parsedClaims!.push({ name: roleName, enabled: claim[1], displayName: userRoleDisplayNames.get(roleName) });
         })
-        return user;
+        return user.parsedClaims!;
       }));
   }
 
   setUserClaims(user: User, role: UserRole) {
     const claims: any = {};
 
-    user.parsedClaims.find(claim => claim.name === role.name)!.enabled = role.enabled;
-    user.parsedClaims.forEach((c) => {
+    user.parsedClaims!.find(claim => claim.name === role.name)!.enabled = role.enabled;
+    user.parsedClaims!.forEach((c) => {
       claims[c.name] = c.enabled;
     })
 
@@ -185,22 +188,19 @@ export class AuthService {
     });
   }
 
-  // setRole(currentUser: any) {
-  //   currentUser.getIdTokenResult()
-  //   .then((idTokenResult: any) => {
-  //     // Confirm the user is an Admin.
-  //     if (!!idTokenResult.claims.admin) {
-  //       // Show admin UI.
-  //       this.showAdminUI();
-  //     } else {
-  //       // Show regular user UI.
-  //       this.showRegularUI();
-  //     }
-  //   })
-  //   .catch((error: Error) => {
-  //     console.log(error);
-  //   });
-  // }
+  detectUserRoles() {
+    this.userData?.getIdTokenResult()
+      .then((idTokenResult: any) => {
+        if (!!idTokenResult.claims.admin) {
+          this.userIsAdmin = true;
+        } else {
+          this.userIsAdmin = false;
+        }
+      })
+      .catch((error: Error) => {
+        console.log(error);
+      });
+  }
 
   // Sign out
   signOut() {
@@ -217,9 +217,11 @@ export class AuthService {
     ["auth/missing-email", "Не вказано  сервісу. Спробуйте ще раз, будь ласка."],
     ["auth/email-already-in-use", "Ця поштова скринька вже зареєстрована. Спробуйте вказати іншу адресу або увійти з цією."],
     ["auth/weak-password", "Обраний пароль занадто слабкий. Спробуйте складніший пароль, будь ласка."],
+    ["auth/popup-blocked", "Спливаюче вікно заблоковане браузером. Спробуйте ще раз, будь ласка."],
+    ["auth/cancelled-popup-request", "Запит на відкриття спливаючого вікна було скасовано. Спробуйте ще раз."],
   ]);
 
-  showAuthError(error: FirebaseError) {
+  showAuthError(error: UIFError) {
     const message = JSON.stringify(error, null, 2);
     let messageText = `Помилка: ${this.messageMap.get(error.code) || error.code || ' деталі невідомі. Спробуйте ще раз.'}`;
     this._snackBar.open(messageText, 'OK', { verticalPosition: 'top' });

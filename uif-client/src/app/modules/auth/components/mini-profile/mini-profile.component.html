@@ -1,0 +1,10 @@
+<span *ngIf="auth.isLoggedIn; else login">
+  <button mat-button [routerLink]="['/main/dashboard']">{{username}}{{auth.userIsAdmin ? ' (A)' : ''}}</button>
+  <button mat-icon-button (click)="logout()"><mat-icon class="logout">logout</mat-icon></button>
+</span>
+
+<ng-template #login>
+  <a [routerLink]="['/main/dashboard']">
+    <mat-icon color="warn">person</mat-icon>
+  </a>
+</ng-template>
