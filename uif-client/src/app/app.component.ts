@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './modules/auth/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Ukrainians In Fact';
 
-  constructor() { }
+  constructor(protected auth: AuthService) { }
 
 }
 

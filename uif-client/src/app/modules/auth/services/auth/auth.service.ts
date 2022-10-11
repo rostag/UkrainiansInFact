@@ -15,12 +15,15 @@ import 'firebase/compat/functions';
 import { from, Observable, of } from 'rxjs';
 import { User, UserRole, userRoleDisplayNames, UserRoleName } from '../user';
 
+export interface UIFError extends FirebaseError {};
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   
   userData!: User;
+  userIsAdmin = false;
 
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
@@ -40,6 +43,7 @@ export class AuthService {
         localStorage.setItem('user', 'null');
         JSON.parse(localStorage.getItem('user')!);
       }
+      this.detectUserRoles();
     });
   }
   // Sign in with email/password
@@ -129,9 +133,9 @@ export class AuthService {
     return user?.parsedClaims;
   }
 
-  getUserClaims(user: User): Observable<User> {
+  getUserClaims(user: User): Observable<UserRole[]> {
     if (this.userHasClaims(user)) {
-      return of(user);
+      return of(user.parsedClaims!);
     }
     const getUserClaims = firebase.functions().httpsCallable('getUserClaims');
     user.parsedClaims = [];
@@ -142,7 +146,7 @@ export class AuthService {
           const roleName = claim[0] as UserRoleName;
           user.parsedClaims!.push({ name: roleName, enabled: claim[1], displayName: userRoleDisplayNames.get(roleName) });
         })
-        return user;
+        return user.parsedClaims!;
       }));
   }
 
@@ -184,22 +188,19 @@ export class AuthService {
     });
   }
 
-  // setRole(currentUser: any) {
-  //   currentUser.getIdTokenResult()
-  //   .then((idTokenResult: any) => {
-  //     // Confirm the user is an Admin.
-  //     if (!!idTokenResult.claims.admin) {
-  //       // Show admin UI.
-  //       this.showAdminUI();
-  //     } else {
-  //       // Show regular user UI.
-  //       this.showRegularUI();
-  //     }
-  //   })
-  //   .catch((error: Error) => {
-  //     console.log(error);
-  //   });
-  // }
+  detectUserRoles() {
+    this.userData?.getIdTokenResult()
+      .then((idTokenResult: any) => {
+        if (!!idTokenResult.claims.admin) {
+          this.userIsAdmin = true;
+        } else {
+          this.userIsAdmin = false;
+        }
+      })
+      .catch((error: Error) => {
+        console.log(error);
+      });
+  }
 
   // Sign out
   signOut() {
@@ -218,7 +219,7 @@ export class AuthService {
     ["auth/weak-password", "Обраний пароль занадто слабкий. Спробуйте складніший пароль, будь ласка."],
   ]);
 
-  showAuthError(error: FirebaseError) {
+  showAuthError(error: UIFError) {
     const message = JSON.stringify(error, null, 2);
     let messageText = `Помилка: ${this.messageMap.get(error.code) || error.code || ' деталі невідомі. Спробуйте ще раз.'}`;
     this._snackBar.open(messageText, 'OK', { verticalPosition: 'top' });

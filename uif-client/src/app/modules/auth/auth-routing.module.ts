@@ -5,6 +5,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { UsersComponent } from './components/users/users.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { AuthGuard } from './services';
+import { AdminGuard } from './services/auth/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -12,7 +14,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
-  { path: 'users', component: UsersComponent },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
 ];
 
 @NgModule({
