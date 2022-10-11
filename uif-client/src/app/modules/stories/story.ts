@@ -9,6 +9,7 @@ export interface Story {
     instagramEmbedCode?: string;
     isExpanded?: boolean;
     storyPath?: string;
+    email?: string;
 }
 
 export type StoryDisplayMode = 'storyList' | 'storyCarousel' | 'storyTitle' | 'storySingle';

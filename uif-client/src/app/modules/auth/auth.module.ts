@@ -13,6 +13,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UsersComponent } from './components/users/users.component';
 import { UserComponent } from './components/user/user.component';
 import { FormsModule } from '@angular/forms';
+import { MiniProfileComponent } from './components/mini-profile/mini-profile.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     SignInComponent,
     SignUpComponent,
     UsersComponent,
-    UserComponent
+    UserComponent,
+    MiniProfileComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatSnackBarModule,
     MatCheckboxModule,
+    MatIconModule,
     FormsModule
   ]
 })

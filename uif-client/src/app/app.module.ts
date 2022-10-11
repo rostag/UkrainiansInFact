@@ -23,12 +23,14 @@ import { provideFunctions, getFunctions } from '@angular/fire/functions';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { AuthGuard } from './modules/auth/services';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LazyDirective } from './directives/lazy.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    AboutComponent
+    AboutComponent,
+    LazyDirective
   ],
   imports: [
     BrowserModule,
