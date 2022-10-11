@@ -34,6 +34,7 @@ export class StoryDialogComponent {
     this.data.story.facebookProfile = this.backupStory.facebookProfile;
     this.data.story.instagramProfile = this.backupStory.instagramProfile;
     this.data.story.instagramEmbedCode = this.backupStory.instagramEmbedCode;
+    this.data.story.storyPath = this.backupStory.storyPath;
     this.dialogRef.close(this.data);
   }
 }

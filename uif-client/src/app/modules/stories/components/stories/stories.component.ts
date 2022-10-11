@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, Observable, Subject, switchMap, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Story, StoryDisplayMode } from '../../story';
 import { StoryDialogComponent, StoryDialogResult } from '../add-story/story-dialog.component';
 

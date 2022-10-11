@@ -2,7 +2,6 @@ import { Injectable, NgZone } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
 import { ParsedToken } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
 import {
   AngularFirestore,
   AngularFirestoreDocument
@@ -21,9 +20,9 @@ import { User, UserRole, userRoleDisplayNames, UserRoleName } from '../user';
 })
 export class AuthService {
   
-  userData: any; // Save logged in user data
+  userData!: User;
+
   constructor(
-    public afdb: AngularFireDatabase, // Inject Firestore service
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
@@ -34,7 +33,7 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.userData = user;
+        this.userData = user as User;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
       } else {
@@ -141,7 +140,7 @@ export class AuthService {
       .then((result: HttpsCallableResult) => {
         Object.entries(result.data as ParsedToken).forEach((claim) => {
           const roleName = claim[0] as UserRoleName;
-          user.parsedClaims.push({ name: roleName, enabled: claim[1], displayName: userRoleDisplayNames.get(roleName) });
+          user.parsedClaims!.push({ name: roleName, enabled: claim[1], displayName: userRoleDisplayNames.get(roleName) });
         })
         return user;
       }));
@@ -150,8 +149,8 @@ export class AuthService {
   setUserClaims(user: User, role: UserRole) {
     const claims: any = {};
 
-    user.parsedClaims.find(claim => claim.name === role.name)!.enabled = role.enabled;
-    user.parsedClaims.forEach((c) => {
+    user.parsedClaims!.find(claim => claim.name === role.name)!.enabled = role.enabled;
+    user.parsedClaims!.forEach((c) => {
       claims[c.name] = c.enabled;
     })
 
