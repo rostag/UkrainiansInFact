@@ -1,7 +1,7 @@
 <div class="wrap">
     <div class="center-aligned">    
         <h1>Особисті історії</h1>
-        <button mat-icon-button color="accent" (click)="addStory()" class="add-button"><mat-icon>add</mat-icon></button>
+        <button mat-icon-button color="accent" (click)="storyService.addStory()" class="add-button"><mat-icon>add</mat-icon></button>
     </div>
 
     <div class="center-aligned"> 
@@ -21,36 +21,26 @@
 
     <ng-template #storyList>
         <div class="stories-flex">
-            <app-story *ngFor="let story of stories | async" [story]="story" [displayMode]="'storyList'" (edit)="editStory($event)">
+            <app-story *ngFor="let story of storyService.stories | async" [story]="story" [displayMode]="'storyList'">
             </app-story>
         </div>
     </ng-template>
 
     <ng-template #storyTitle>
-        <app-story *ngFor="let story of stories | async" [story]="story" [displayMode]="'storyTitle'" (edit)="editStory($event)">
+        <app-story *ngFor="let story of storyService.stories | async" [story]="story" [displayMode]="'storyTitle'">
         </app-story>
     </ng-template>
 
     <ng-template #storySingle>
-      <app-story [story]="getRandomStory()" [displayMode]="'storySingle'" (edit)="editStory($event)">
+      <app-story [story]="storyService.getRandomStory()" [displayMode]="'storySingle'">
       </app-story>
     </ng-template>
 
     <ng-template #storyCarousel>
-      <app-story *ngFor="let story of stories | async" [story]="story" (edit)="editStory($event)">
+      <app-story *ngFor="let story of storyService.stories | async" [story]="story">
       </app-story>
     </ng-template>
 
     <div class="spacer"></div>
-
-    <!-- <div class="dev-section">
-        <h2>Для розробників</h2>
-        <p>Режим відображення історій:</p>
-        <mat-button-toggle-group name="displayMode" aria-label="Режим відображення історій" (change)="setDisplayMode($event)">
-            <mat-button-toggle value="storySingle">Особиста історія</mat-button-toggle>
-            <mat-button-toggle value="storyTitle">Заголовки</mat-button-toggle>
-            <mat-button-toggle value="storyList">Одним списком</mat-button-toggle>
-        </mat-button-toggle-group>
-    </div> -->
 
 </div>

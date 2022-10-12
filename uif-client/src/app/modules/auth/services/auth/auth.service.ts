@@ -129,6 +129,10 @@ export class AuthService {
       }));
   }
 
+  userIsAllowedTo(action: string, resource: string): any {
+    return false;
+  } 
+
   userHasClaims(user: User) {
     return user?.parsedClaims;
   }

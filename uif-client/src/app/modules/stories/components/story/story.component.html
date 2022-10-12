@@ -4,11 +4,15 @@
     <ng-container *ngSwitchDefault [ngTemplateOutlet]="storyList"></ng-container>
 </ng-container>
 
+<ng-template #editButton>
+    <button mat-button color="accent" (click)="storyService.editStory(story)" *ngIf="authService.userIsAllowedTo('write', 'story')">Змінити</button>
+</ng-template>
+
 <ng-template #storyTitle>
     <div class="story-single-wrap story-title-wrap" *ngIf="!!story; else loading">
         <div class="flex-row">
             <h2 (click)="toggleStory(story)">{{ story.title }}</h2>
-            <button mat-button color="accent" (click)="editStory(story)">Змінити</button>
+            <ng-container editButton></ng-container>
         </div>
         <div *ngIf="story.isExpanded">
             <div *ngIf="!story.isPublished; else notPublished">
@@ -28,7 +32,7 @@
     <div class="story-single-wrap" *ngIf="!!story; else loading">
         <div class="flex-row">
             <h2>{{ story.title }}</h2>
-            <button mat-button color="accent" (click)="editStory(story)">Змінити</button>
+            <ng-container editButton></ng-container>
         </div>
         <div *ngIf="!story.isPublished; else notPublished">
             <div class="text" [innerHtml]="story.text | safeHtml"></div>
@@ -52,7 +56,7 @@
                     <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span>
                 </div>
             </div>
-            <button mat-button color="primary" (click)="editStory(story)">Змінити</button>
+            <ng-container editButton></ng-container>
         </div>
         <div *ngIf="!story.isPublished; else notPublished">
             <div class="text" [innerHtml]="story.text | safeHtml"></div>
