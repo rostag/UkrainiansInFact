@@ -15,6 +15,9 @@ import 'firebase/compat/functions';
 import { from, Observable, of } from 'rxjs';
 import { User, UserRole, userRoleDisplayNames, UserRoleName } from '../user';
 
+export type UserActionType = 'read' | 'write' | 'create' | 'edit' | 'delete' | 'list';
+export type ResourceType = 'story' | 'task';
+
 export interface UIFError extends FirebaseError {};
 
 @Injectable({
@@ -24,6 +27,7 @@ export class AuthService {
   
   userData!: User;
   userIsAdmin = false;
+  userIsEditor = false;
 
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
@@ -129,6 +133,19 @@ export class AuthService {
       }));
   }
 
+  
+  userIsAllowedTo(action: UserActionType, resource: ResourceType): any {
+    let result = false;
+    if (action === 'write') {
+      if (resource === 'story') {
+        if (this.userIsEditor) {
+          result = true;
+        }
+      }
+    }
+    return result;
+  } 
+
   userHasClaims(user: User) {
     return user?.parsedClaims;
   }
@@ -191,11 +208,8 @@ export class AuthService {
   detectUserRoles() {
     this.userData?.getIdTokenResult()
       .then((idTokenResult: any) => {
-        if (!!idTokenResult.claims.admin) {
-          this.userIsAdmin = true;
-        } else {
-          this.userIsAdmin = false;
-        }
+          this.userIsAdmin = !!idTokenResult.claims.admin;
+          this.userIsEditor = !!idTokenResult.claims.editor;
       })
       .catch((error: Error) => {
         console.log(error);

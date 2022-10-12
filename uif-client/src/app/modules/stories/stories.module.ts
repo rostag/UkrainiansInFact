@@ -11,8 +11,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { StoryDialogComponent } from './components/add-story/story-dialog.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { StoryService } from './services/story.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,9 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
     MatIconModule,
     MatDialogModule,
     FormsModule
+  ],
+  providers: [
+    StoryService
   ]
 })
 export class StoriesModule { }

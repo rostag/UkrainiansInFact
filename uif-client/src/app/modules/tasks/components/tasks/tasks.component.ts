@@ -25,7 +25,10 @@ export class TasksComponent implements OnInit {
   inProgress = getObservable(this.store.collection('inProgress')) as Observable<Task[]>;
   done = getObservable(this.store.collection('done')) as Observable<Task[]>;
 
-  constructor(private dialog: MatDialog, private store: AngularFirestore) { }
+  constructor(
+    private dialog: MatDialog,
+    private store: AngularFirestore
+  ) { }
 
   ngOnInit(): void {}
 

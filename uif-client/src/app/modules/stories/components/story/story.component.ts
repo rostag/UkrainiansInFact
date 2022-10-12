@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import * as firebase from 'firebase/compat';
 import { Observable, BehaviorSubject, combineLatest, switchMap } from 'rxjs';
+import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
+import { StoryService } from '../../services/story.service';
 import { Story, StoryDisplayMode } from '../../story';
 
 @UntilDestroy()
@@ -19,7 +21,7 @@ export class StoryComponent implements OnInit {
 
   @Input() story!: Story;
 
-  @Output() edit = new EventEmitter<Story>();
+  // @Output() edit = new EventEmitter<Story>();
 
   storyPath: string = '';
 
@@ -28,7 +30,9 @@ export class StoryComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private afStore: AngularFirestore
+    private afStore: AngularFirestore,
+    protected storyService: StoryService,
+    protected authService: AuthService,
     ) {
       this.pathFilter$ = new BehaviorSubject(null);
       this.items$ = this.pathFilter$.pipe(
@@ -56,10 +60,6 @@ export class StoryComponent implements OnInit {
     this.route.params.pipe(untilDestroyed(this)).subscribe(params => {
       this.filterStoryByPath(params['storyPath']);
     })    
-  }
-
-  editStory(story: Story) {
-    this.edit.emit(story);
   }
 
   toggleStory(story: Story) {
