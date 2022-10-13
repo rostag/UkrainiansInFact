@@ -1,16 +1,16 @@
 <div class="wrap">
     <div class="center-aligned">    
         <h1>Особисті історії</h1>
-        <button mat-icon-button color="accent" (click)="storyService.addStory()" class="add-button"><mat-icon>add</mat-icon></button>
+        <button mat-icon-button color="accent" (click)="storyService.addStory()" class="add-button" [disabled]="!authService.isLoggedIn"><mat-icon>add</mat-icon></button>
     </div>
 
-    <div class="center-aligned"> 
+    <!-- <div class="center-aligned"> 
         <mat-button-toggle-group class="display-mode-toggle" name="displayMode" aria-label="Режим відображення історій" (change)="setDisplayMode($event)">
             <mat-button-toggle value="storySingle">Випадкова історія</mat-button-toggle>
             <mat-button-toggle value="storyTitle">Заголовки</mat-button-toggle>
             <mat-button-toggle value="storyList">Одним списком</mat-button-toggle>
         </mat-button-toggle-group>
-    </div> 
+    </div>  -->
 
     <ng-container [ngSwitch]="displayMode">
         <ng-container *ngSwitchCase="'storyCarousel'" [ngTemplateOutlet]="storyCarousel"></ng-container>

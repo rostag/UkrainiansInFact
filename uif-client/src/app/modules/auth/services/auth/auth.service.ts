@@ -13,10 +13,12 @@ import * as auth from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/functions';
 import { from, Observable, of } from 'rxjs';
+import { Story } from 'src/app/modules/stories/story';
+import { Task } from 'src/app/modules/tasks/components/task/task';
 import { User, UserRole, userRoleDisplayNames, UserRoleName } from '../user';
 
-export type UserActionType = 'read' | 'write' | 'create' | 'edit' | 'delete' | 'list';
-export type ResourceType = 'story' | 'task';
+export type UserActionType = 'read' | 'write' | 'create' | 'update' | 'delete' | 'list';
+export type Resource = Story | Task;
 
 export interface UIFError extends FirebaseError {};
 
@@ -133,17 +135,25 @@ export class AuthService {
       }));
   }
 
-  
-  userIsAllowedTo(action: UserActionType, resource: ResourceType): any {
-    let result = false;
-    if (action === 'write') {
-      if (resource === 'story') {
-        if (this.userIsEditor) {
-          result = true;
-        }
+  userIsAllowedTo(action: UserActionType, resource: Resource): any {
+    // Only Admins, Editors and Owners by email can update Stories. Sandbox is editable by anyone
+    if ('storyPath' in resource) {
+      const story = resource as Story;
+      if (action === 'update') {
+        return this.userIsAdmin || this.userIsEditor || this.userData?.email === story.email || story.storyPath === 'sandbox';
       }
     }
-    return result;
+    // Only logged in allowed to see tasks
+    // Only admins allowed to update tasks
+    if ('taskPath' in resource) {
+      if (action === 'read') {
+        return this.isLoggedIn;
+      }
+      if (action === 'update') {
+        return this.userIsAdmin;
+      }
+    }
+    return false;
   } 
 
   userHasClaims(user: User) {

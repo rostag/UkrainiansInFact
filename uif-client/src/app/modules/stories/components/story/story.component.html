@@ -4,23 +4,27 @@
     <ng-container *ngSwitchDefault [ngTemplateOutlet]="storyList"></ng-container>
 </ng-container>
 
+<ng-template #editButton let-story>
+    <button mat-button color="accent" (click)="storyService.editStory(story)" *ngIf="authService.userIsAllowedTo('update', story)">Змінити</button>
+</ng-template>
+
 <ng-template #storyTitle>
     <div class="story-single-wrap story-title-wrap" *ngIf="!!story; else loading">
         <div class="flex-row">
-            <h2 (click)="toggleStory(story)">{{ story.title }}</h2>
-            <button mat-button color="accent" (click)="storyService.editStory(story)" *ngIf="authService.userIsAllowedTo('write', 'story')">Змінити</button>
+            <h2 (click)="storyService.goToStory(story)">{{ story.title }}</h2><small>https://ukrainiansinfact.org.ua/story/{{story.storyPath}}</small>
+            <ng-container *ngTemplateOutlet="editButton; context: {$implicit: story}"></ng-container>
         </div>
-        <div *ngIf="story.isExpanded">
-            <div *ngIf="!story.isPublished; else notPublished">
+        <!-- <div *ngIf="story.isExpanded">
+            <div *ngIf="story.isPublished; else notPublished">
                 <div class="text" [innerHtml]="story.text | safeHtml"></div>
                 <div class="story-single-image-wrap"><img class="story-image" [src]="story.image" /></div>
-                <div class="story-social-refs">
-                    <span>Cторінки в соцмережах: </span>
+                <div class="story-social-refs" *ngIf="story.facebookProfile || story.instagramProfile">
+                    <span>В соцмережах: </span>
                     <span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span>
                     <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </ng-template>
 
@@ -28,12 +32,12 @@
     <div class="story-single-wrap" *ngIf="!!story; else loading">
         <div class="flex-row">
             <h2>{{ story.title }}</h2>
-            <button mat-button color="accent" (click)="storyService.editStory(story)" *ngIf="authService.userIsAllowedTo('write', 'story')">Змінити</button>
+            <ng-container *ngTemplateOutlet="editButton; context: {$implicit: story}"></ng-container>
         </div>
-        <div *ngIf="!story.isPublished; else notPublished">
+        <div *ngIf="story.isPublished; else notPublished">
             <div class="text" [innerHtml]="story.text | safeHtml"></div>
             <div class="story-single-image-wrap"><img class="story-image" [src]="story.image" /></div>
-            <div class="story-social-refs">
+            <div class="story-social-refs" *ngIf="story.facebookProfile || story.instagramProfile">
                 <span>Cторінки в соцмережах: </span>
                 <span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span>
                 <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span>
@@ -47,14 +51,14 @@
         <div class="flex">
             <div>
                 <h2>{{story.title}}</h2>
-                <div class="story-social-refs">
+                <div class="story-social-refs" *ngIf="story.facebookProfile || story.instagramProfile">
                     <span *ngIf="story.facebookProfile">Facebook: <a [href]="'https://www.facebook.com/' + story.facebookProfile">{{ story.facebookProfile }}</a> </span>
                     <span *ngIf="story.instagramProfile"> Instagram: <a [href]="'https://www.instagram.com/' + story.instagramProfile">{{ story.instagramProfile }}</a></span>
                 </div>
             </div>
-            <button mat-button color="accent" (click)="storyService.editStory(story)" *ngIf="authService.userIsAllowedTo('write', 'story')">Змінити</button>
+            <ng-container *ngTemplateOutlet="editButton; context: {$implicit: story}"></ng-container>
         </div>
-        <div *ngIf="!story.isPublished; else notPublished">
+        <div *ngIf="story.isPublished; else notPublished">
             <div class="text" [innerHtml]="story.text | safeHtml"></div>
             <div class="story-image-wrap"><img class="story-image" [src]="story.image" /></div>
         </div>
@@ -62,13 +66,9 @@
 </ng-template>
 
 <ng-template #notPublished>
-    Ця історія ще не опублікована
+    Ця історія не опублікована.
 </ng-template>
 
 <ng-template #loading>
     Завантажуємо...
 </ng-template>
-
-<!-- <ng-template #editButton>
-    <button mat-button color="accent" (click)="storyService.editStory(story)" *ngIf="authService.userIsAllowedTo('write', 'story')">Змінити</button>
-</ng-template> -->

@@ -25,12 +25,16 @@
     </mat-form-field>
     <mat-form-field class="text-wrap">
         <mat-label>Шлях до історії</mat-label>
-        <input matInput [(ngModel)]="data.story.storyPath" />
+        <input matInput [(ngModel)]="data.story.storyPath" [disabled]="data.story.storyPath === 'sandbox'" />
     </mat-form-field>
-    <mat-form-field class="text-wrap">
+    <mat-form-field class="text-wrap" *ngIf="authService.userIsAdmin || authService.userIsEditor">
         <mat-label>Email</mat-label>
         <input matInput [(ngModel)]="data.story.email" />
     </mat-form-field>
+    <span class="text-wrap">
+        <mat-checkbox [(ngModel)]="data.story.isPublished">Публікувати</mat-checkbox>
+    </span>
+    
 </div>
 
 <div mat-dialog-actions>

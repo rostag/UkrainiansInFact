@@ -14,6 +14,7 @@ import { StoryDialogComponent } from './components/add-story/story-dialog.compon
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { StoryService } from './services/story.service';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { StoryService } from './services/story.service';
     MatButtonToggleModule,
     MatIconModule,
     MatDialogModule,
+    MatCheckboxModule,
     FormsModule
   ],
   providers: [
