@@ -94,7 +94,7 @@ export class StoryService {
   }
 
   goToStory(story: Story) {
-    this.router.navigate(['story', story.storyPath]);
+    this.router.navigate(['stories', story.storyPath]);
   }
 
 }
