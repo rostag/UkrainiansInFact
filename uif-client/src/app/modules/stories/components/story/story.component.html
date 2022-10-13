@@ -11,7 +11,7 @@
 <ng-template #storyTitle>
     <div class="story-single-wrap story-title-wrap" *ngIf="!!story; else loading">
         <div class="flex-row">
-            <h2 (click)="storyService.goToStory(story)">{{ story.title }}</h2><small>https://ukrainiansinfact.org.ua/story/{{story.storyPath}}</small>
+            <h2 (click)="storyService.goToStory(story)">{{ story.title }}</h2><small *ngIf="authService.userIsAdmin">https://ukrainiansinfact.org.ua/stories/{{story.storyPath}}</small>
             <ng-container *ngTemplateOutlet="editButton; context: {$implicit: story}"></ng-container>
         </div>
         <!-- <div *ngIf="story.isExpanded">
