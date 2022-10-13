@@ -4,7 +4,7 @@
   <button mat-button [routerLink]="['/about']">Наша мета</button>
   <button mat-button [routerLink]="['/tasks']" *ngIf="auth.isLoggedIn">Задачі</button>
   <button mat-button [routerLink]="['/main/whats-next']">Наступні кроки</button>
-  <button mat-button [routerLink]="['/auth/users']" *ngIf="auth.userIsAdmin">Юзери</button>
+  <button mat-button [routerLink]="['/auth/users']" *ngIf="auth.userIsAdmin">Особи</button>
   <a href="/hi"><button mat-button color="warn">Діяти!</button></a>
   <span class="toolbar-spacer"></span>
   <ng-template lazyComponent> </ng-template>
