@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: '404', loadChildren: () => import('./modules/not-found/not-found.module').then(m => m.NotFoundModule) },
   // The empty path matches everything that doesn't match an earlier path
   { path: '', redirectTo: 'main/home', pathMatch: 'full' },
+  { path: 'renaissance', loadChildren: () => import('./modules/renaissance/renaissance.module').then(m => m.RenaissanceModule) },
   { path: '**', redirectTo: '404' },
 ];
 
