@@ -10,6 +10,7 @@
     "get-stats": "ng build --stats-json > unbundling-stats.txt && webpack-bundle-analyzer dist/uif-client/stats.json",
     "fun": "cd functions && npm run serve",
     "emu": "cd functions && npm run build && firebase emulators:start",
+    "deploy": "nvm use 16 && ng deploy",
     "deploy-functions": "firebase deploy --only functions"
   },
   "private": true,
