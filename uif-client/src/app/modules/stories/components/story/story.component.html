@@ -16,7 +16,7 @@
         </div>
         <!-- <div *ngIf="story.isExpanded">
             <div *ngIf="story.isPublished; else notPublished">
-                <div class="text" [innerHtml]="story.text | safeHtml"></div>
+                <div class="story-text" [innerHtml]="story.text | safeHtml"></div>
                 <div class="story-single-image-wrap"><img class="story-image" [src]="story.image" /></div>
                 <div class="story-social-refs" *ngIf="story.facebookProfile || story.instagramProfile">
                     <span>В соцмережах: </span>
@@ -31,11 +31,11 @@
 <ng-template #storySingle>
     <div class="story-single-wrap" *ngIf="!!story; else loading">
         <div class="flex-row">
-            <h2>{{ story.title }}</h2>
+            <h1>{{ story.title }}</h1>
             <ng-container *ngTemplateOutlet="editButton; context: {$implicit: story}"></ng-container>
         </div>
         <div *ngIf="story.isPublished; else notPublished">
-            <div class="text" [innerHtml]="story.text | safeHtml"></div>
+            <div class="story-text" [innerHtml]="story.text | safeHtml"></div>
             <div class="story-single-image-wrap"><img class="story-image" [src]="story.image" /></div>
             <div class="story-social-refs" *ngIf="story.facebookProfile || story.instagramProfile">
                 <span>Cторінки в соцмережах: </span>
@@ -59,7 +59,7 @@
             <ng-container *ngTemplateOutlet="editButton; context: {$implicit: story}"></ng-container>
         </div>
         <div *ngIf="story.isPublished; else notPublished">
-            <div class="text" [innerHtml]="story.text | safeHtml"></div>
+            <div class="story-text" [innerHtml]="story.text | safeHtml"></div>
             <div class="story-image-wrap"><img class="story-image" [src]="story.image" /></div>
         </div>
     </div>

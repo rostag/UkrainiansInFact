@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TextService } from './text.service';
+import { IBook, TextService } from './text.service';
 
 @Component({
   selector: 'app-renaissance',
@@ -10,6 +10,9 @@ export class RenaissanceComponent implements OnInit {
 
   constructor(protected textService: TextService) { }
 
+  page = 0;
+  line = 0;
+
   result = '';
 
   ngOnInit(): void {
@@ -17,10 +20,10 @@ export class RenaissanceComponent implements OnInit {
   }
 
   render () {
-    const lines = this.textService.parseBook();
-    this.result = this.textService.getLine(undefined, 1);    
-    console.log('lines:', lines[0]);
-    console.log('res:', this.result); 
+    const book: IBook = this.textService.parseBook();
+    // const lines = this.textService.getLine(undefined, 1);    
+    // console.log('lines:', lines[0]);
+    // console.log('res:', this.result); 
   }
 
 }
