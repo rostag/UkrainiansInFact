@@ -8,6 +8,13 @@ import { IBook, TextService } from './text.service';
 })
 export class RenaissanceComponent implements OnInit {
 
+  // TODO
+  // Implement 'Planner' - to distribute audio among narrators
+  // Narrators I want:
+  // Olga Sytnik, because of voice
+  // Veronika Chygrina, because of idea
+  // Volunteering ones
+
   constructor(protected textService: TextService) { }
 
   page = 0;
