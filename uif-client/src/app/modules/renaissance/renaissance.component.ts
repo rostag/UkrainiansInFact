@@ -11,8 +11,14 @@ export class RenaissanceComponent implements OnInit {
   // TODO
   // Implement 'Planner' - to distribute audio among narrators
   // Narrators I want:
+  // Persons of UIF
+  // TickTockers of UC / GU
   // Olga Sytnik, because of voice
   // Veronika Chygrina, because of idea
+  // Maria Tercia
+  // Maria Kozyrenko
+  // Olesya Ostapenko
+  // 
   // Volunteering ones
 
   constructor(protected textService: TextService) { }
