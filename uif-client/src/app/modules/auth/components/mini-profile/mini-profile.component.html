@@ -1,10 +1,8 @@
 <span *ngIf="auth.isLoggedIn; else login">
-  <button mat-button [routerLink]="['/main/dashboard']">{{username}}{{auth.userIsAdmin ? ' (A)' : ''}}</button>
-  <button mat-icon-button (click)="logout()"><mat-icon class="logout">logout</mat-icon></button>
+  <a [routerLink]="['/main/dashboard']">{{auth.userIsAdmin ? '(A) ' : ''}}{{username}} </a>
+  <a class="logout" (click)="logout()">Вийти</a>
 </span>
 
 <ng-template #login>
-  <a [routerLink]="['/main/dashboard']">
-    <mat-icon color="warn">person</mat-icon>
-  </a>
+  <a [routerLink]="['/auth/sign-in']">Увійти</a>
 </ng-template>

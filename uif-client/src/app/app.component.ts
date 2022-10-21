@@ -1,5 +1,6 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit, Type, ViewChild } from '@angular/core';
-import { exhaustMap, from, of } from 'rxjs';
+import { exhaustMap, from, map, Observable, of, shareReplay } from 'rxjs';
 import { LazyDirective } from './directives/lazy.directive';
 import { MiniProfileComponent } from './modules/auth/components/mini-profile/mini-profile.component';
 import { AuthService } from './modules/auth/services/auth/auth.service';
@@ -11,7 +12,16 @@ import { AuthService } from './modules/auth/services/auth/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(protected auth: AuthService) { }
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+
+  constructor (
+    protected auth: AuthService, 
+    private breakpointObserver: BreakpointObserver
+  ) { }
 
   @ViewChild(LazyDirective, { static: false }) miniProfile!: LazyDirective;
 

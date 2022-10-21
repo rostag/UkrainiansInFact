@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AuthService } from '../../auth/services/auth/auth.service';
 import { StoryDialogComponent, StoryDialogResult } from '../components/add-story/story-dialog.component';
 import { Story } from '../story';
 
@@ -13,10 +15,14 @@ export class StoryService {
   storiesResult: Story[] = [];
   afsStoriesCollection: AngularFirestoreCollection<Story> = this.store.collection('stories');
   stories = this.getStoriesObservable(this.afsStoriesCollection) as Observable<Story[]>;
+  
+  randomStory!: Story;
 
   constructor(
+    protected authService: AuthService,
     private store: AngularFirestore,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
   ) { }
 
   getStoriesObservable(collection: AngularFirestoreCollection<Story>) {
@@ -28,9 +34,12 @@ export class StoryService {
     return subj;
   }
 
-  getRandomStory() {
-    const rnd = Math.floor(Math.random() * this.storiesResult?.length);
-    return this.getStoryFromResult(rnd)
+  getRandomStory(): Story {
+    if (this.randomStory) {
+      return this.randomStory;
+    }
+    this.randomStory = this.getStoryFromResult(Math.floor(Math.random() * this.storiesResult?.length));
+    return this.randomStory;
   }
 
   getStoryFromResult(index: number) {
@@ -40,7 +49,12 @@ export class StoryService {
   addStory(): void {
     const dialogRef = this.dialog.open(StoryDialogComponent, {
       data: {
-        story: {},
+        story: {
+          title: 'Нова історія',
+          text: 'Одного разу...',
+          email: this.authService.userData.email,
+          storyPath: 'new-story-' + (new Date()).valueOf()
+        },
       },
     });
     dialogRef
@@ -77,6 +91,10 @@ export class StoryService {
     if (displayMode === 'storyTitle') {
       this.storiesResult.forEach(s => s.isExpanded = false);
     }
+  }
+
+  goToStory(story: Story) {
+    this.router.navigate(['stories', story.storyPath]);
   }
 
 }

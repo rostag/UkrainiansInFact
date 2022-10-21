@@ -32,7 +32,6 @@ body {
 body {
   margin: 0;
   line-height: 1.8rem;
-  // font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 *, *:before, *:after {
@@ -47,14 +46,48 @@ img {
 .content-wrap {
   max-width: 1400px;
   margin: auto;
-  padding: 6em 4em;
+  padding: 4rem;
   
   h1, h2, h3, h4, h5, h6, div, p, li, ol, ul, span, div {
     line-height: 1.8rem;
-    // font-family: Georgia, "Times New Roman", Times, serif !important;
   }  
+}
+
+.content-wrap.is-handset {
+  padding: 2rem 40px;
 }
 
 div, p {
   font-size: 1rem;
+}
+
+/* This will let story content to overwrite attractor */
+.story-override-content {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  width: 100%;
+  min-height: 1000px;
+  background-color: #ffffff;
+}
+
+.story-override-content .story-content {
+  padding: 3rem;
+}
+
+.story-override-content .story-img {
+  background: #31a4ee;
+}
+
+.story-override-content .story-img.in-header {
+  // position: absolute;
+  background-color: #00487f;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position-y: -170px;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: #00487f 1px 0 15px;
+  font-size: 60px;
 }

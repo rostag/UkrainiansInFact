@@ -1,21 +1,38 @@
-<mat-toolbar color="primary" class="transparent-toolbar">
-  <button mat-button [routerLink]="['']">Головна</button>
-  <button mat-button [routerLink]="['/stories']">Особисті історії</button>
-  <button mat-button [routerLink]="['/tasks']">Поточні задачі</button>
-  <button mat-button [routerLink]="['/main/whats-next']">Наступні кроки</button>
-  <button mat-button [routerLink]="['/about']">Наша мета</button>
-  <button mat-button [routerLink]="['/auth/users']" *ngIf="auth.userIsAdmin">Юзери</button>
-  <a href="/hi"><button mat-button color="warn">Діяти!</button></a>
-  <span class="toolbar-spacer"></span>
-  <ng-template lazyComponent> </ng-template>
-</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Меню</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['']">Головна</a>
+      <a mat-list-item [routerLink]="['/about']">Наша мета</a>
+      <a mat-list-item [routerLink]="['/stories']">Особисті історії</a>
+      <a mat-list-item [routerLink]="['/tasks']" *ngIf="auth.isLoggedIn">Задачі</a>
+      <a mat-list-item [routerLink]="['/main/whats-next']">Наступні кроки</a>
+      <a mat-list-item [routerLink]="['/auth/users']" *ngIf="auth.userIsAdmin">Особи</a>
+      <a mat-list-item href="/hi" color="warn">Діяти!</a>
+      <a mat-list-item><ng-template lazyComponent> </ng-template></a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
 
-<div class="attractor">Фактичні Українці</div>
+    <mat-toolbar [ngClass]="{ 'is-handset': (isHandset$ | async), 'not-handset': (isHandset$ | async) === false }">
+      <button
+        type="button"
+        aria-label="Перемкнути навігацію"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Показати меню">menu</mat-icon>
+      </button>
+      <div class="attractor"><span class="text">Фактичні Українці</span></div>
+    </mat-toolbar>
 
-<div class="content-wrap">
-  <router-outlet></router-outlet>
-</div>
+    <div class="content-wrap" [ngClass]="{ 'is-handset': (isHandset$ | async), 'not-handset': (isHandset$ | async) === false }" >
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
 
-<div class="footer-spacer"></div>
-
-<app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

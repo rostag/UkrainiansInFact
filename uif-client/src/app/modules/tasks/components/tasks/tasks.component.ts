@@ -35,7 +35,9 @@ export class TasksComponent implements OnInit {
   newTask(): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
       data: {
-        task: {},
+        task: {
+          taskPath: 'task-' + (new Date()).valueOf()
+        },
       },
     });
     dialogRef

@@ -24,13 +24,16 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { AuthGuard } from './modules/auth/services';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LazyDirective } from './directives/lazy.directive';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     AboutComponent,
-    LazyDirective
+    LazyDirective,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,9 @@ import { LazyDirective } from './directives/lazy.directive';
     provideFirestore(() => getFirestore()),
     provideFunctions(() => getFunctions()),
     provideStorage(() => getStorage()),
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [
     ScreenTrackingService, UserTrackingService, AuthGuard
