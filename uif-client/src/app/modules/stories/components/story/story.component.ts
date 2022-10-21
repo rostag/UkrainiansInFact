@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Item } from '@angular/fire/analytics';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { Component, Input, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import * as firebase from 'firebase/compat';
-import { Observable, BehaviorSubject, combineLatest, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/modules/auth/services/auth/auth.service';
 import { StoryService } from '../../services/story.service';
 import { Story, StoryDisplayMode } from '../../story';
@@ -20,8 +19,6 @@ export class StoryComponent implements OnInit {
   @Input() displayMode: StoryDisplayMode = 'storySingle';
 
   @Input() story!: Story;
-
-  // @Output() edit = new EventEmitter<Story>();
 
   storyPath: string = '';
 
