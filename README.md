@@ -10,15 +10,13 @@ This is a source code for creative social facilitation website, located at [Ukra
 
 `ng deploy`
 
-## Create new module and route it from app module using lazy-loading
+## Creation of modules and components
 
-`ng generate module modules/new-module --route new-module --module app.module`
+### Create new module with routing and it's default component, and route it from app module using lazy-loading
 
-## Create component in module and route it
+`ng g m modules/new-module --module app --routing true --route 'modules/new-module'`
 
-`ng generate component modules/new-module/components/new-component --module=modules/new-module`
-
-or, in short form:
+### Create component in module and route it
 
 `ng g c modules/new-module/components/new-component -m=modules/new-module`
 
