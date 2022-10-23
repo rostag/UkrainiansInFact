@@ -16,3 +16,8 @@
 .additional-actions {
     margin-top: 1em;
 }
+
+.or {
+    display: inline-block;
+    padding: 0 1em;
+}

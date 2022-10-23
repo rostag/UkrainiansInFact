@@ -1,5 +1,6 @@
 :host {
     display: block;
+    min-height: 100vh;
 }
 
 .attractor {
@@ -40,7 +41,7 @@
 
 /* Responsive Toolbar Schematics */
 .sidenav-container {
-    height: 100%;
+    min-height: 100vh;
 }
 
 .sidenav {
@@ -76,6 +77,9 @@
 
 /* End Responsive Toolbar Schematics */
 
-app-footer {
-    display: block;
+.mat-sidenav-content {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
+
