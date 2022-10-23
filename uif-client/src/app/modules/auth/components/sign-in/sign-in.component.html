@@ -1,27 +1,26 @@
-      <div class="auth-wrap">
-        <h3>Увійти</h3>
-        <div class="form-fields">
-          <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Email</mat-label>
-            <input matInput #userName required>
-          </mat-form-field>
-          <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Пароль</mat-label>
-            <input matInput type="password" #userPassword required>
-          </mat-form-field>
-        </div>
-        <div class="flex-row">
-          <button mat-stroked-button color="primary" (click)="authService.signIn(userName.value, userPassword.value)">Увійти</button>
-          <span class="or">або</span>
-          <button mat-stroked-button color="primary" (click)="authService.googleAuth()">
-            Увійти через Google
-          </button>
-          </div>
-        <div class="additional-actions">
-          <a routerLink="/auth/forgot-password">Я не пам’ятаю пароль</a>
-        </div>
-      </div>
-      <div>
-        <a routerLink="/auth/sign-up">Реєстрація</a>
-      </div>
-  
+<div class="auth-wrap">
+  <h3>Увійти</h3>
+  <div class="form-fields">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput #userName required>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Пароль</mat-label>
+      <input matInput type="password" #userPassword required>
+    </mat-form-field>
+  </div>
+  <div class="flex-row">
+    <button mat-stroked-button color="primary" (click)="authService.signIn(userName.value, userPassword.value)">Увійти</button>
+    <span class="or">або</span>
+    <button mat-stroked-button color="primary" (click)="authService.googleAuth()">
+      Увійти через Google
+    </button>
+    </div>
+  <div class="additional-actions">
+    <a routerLink="/auth/forgot-password">Я не пам’ятаю пароль</a>
+  </div>
+</div>
+<div>
+  <a routerLink="/auth/sign-up">Реєстрація</a>
+</div>
