@@ -75,3 +75,7 @@
 }
 
 /* End Responsive Toolbar Schematics */
+
+app-footer {
+    display: block;
+}
