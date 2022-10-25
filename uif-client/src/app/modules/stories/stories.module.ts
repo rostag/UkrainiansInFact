@@ -15,13 +15,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { StoryService } from './services/story.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { BlogComponent } from './components/blog/blog.component';
 
 @NgModule({
   declarations: [
     StoriesComponent,
     StoryComponent,
     StoryDialogComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    BlogComponent
   ],
   imports: [
     CommonModule,
