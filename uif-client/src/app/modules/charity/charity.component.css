@@ -5,19 +5,27 @@
 
 .img-wrap {
     background-image: url(../../../assets/img/tz2.jpg);
-    height: auto;
-    min-height: 2880px;
+    width: 1240px;
+    height: 1240px;
     background-size: contain;
     background-repeat: no-repeat;
-    width: 100%;
     position: relative;
 }
 
 .gathered-value {
-    font-size: 29px;
+    font-size: 3rem;
     position: absolute;
-    left: calc(81%);
-    top: calc(14%);
-    width: 6rem;
-    text-align: right;
+    left: 1020px;
+    top: 780px;
+    width: 8rem;
+    text-align: center;
+}
+
+.generate-bt {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.download-link {
+    font-size: 1.2rem;
 }

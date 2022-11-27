@@ -1,10 +1,12 @@
-<p>Теплий збір 2</p>
+<h1>Теплий збір 2 - Графіка</h1>
 <div class="form-wrap">
     <mat-form-field class="sum-input half-width">
         <mat-label>Зібрано:</mat-label>
-        <input matInput cdkFocusInitial [(ngModel)]="data.gathered" />
+        <input matInput cdkFocusInitial [(ngModel)]="data.gathered" (keyup)="invalidate()" />
     </mat-form-field>
+    <button (click)="copyImage()" class="generate-bt">Згенерувати</button>
+    <a [href]="imgData" [download]="imgDownload" class="download-link" *ngIf="downloadReady">Завантажити</a>
 </div>
-<div class="img-wrap">
-    <div class="gathered-value">{{data.gathered}}</div>
+<div class="img-wrap" id="image-teaser">
+    <div class="gathered-value">{{data.gathered}}₴</div>
 </div>
