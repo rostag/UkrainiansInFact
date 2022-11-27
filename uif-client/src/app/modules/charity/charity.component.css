@@ -1,0 +1,23 @@
+:host {
+    width: 60vw;
+    display: block
+}
+
+.img-wrap {
+    background-image: url(../../../assets/img/tz2.jpg);
+    height: auto;
+    min-height: 2880px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    position: relative;
+}
+
+.gathered-value {
+    font-size: 29px;
+    position: absolute;
+    left: calc(81%);
+    top: calc(14%);
+    width: 6rem;
+    text-align: right;
+}
