@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'main/home', pathMatch: 'full' },
   { path: 'renaissance', loadChildren: () => import('./modules/renaissance/renaissance.module').then(m => m.RenaissanceModule) },
   { path: 'haze', loadChildren: () => import('./modules/haze/haze.module').then(m => m.HazeModule) },
+  { path: 'charity', loadChildren: () => import('./modules/charity/charity.module').then(m => m.CharityModule) },
   { path: '**', redirectTo: '404' },
 ];
 

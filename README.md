@@ -4,11 +4,11 @@ This is a source code for creative social facilitation website, located at [Ukra
 
 ## Build
 
-`ng start`
+`npm run start`
 
 ## Deploy
 
-`ng deploy`
+`npm run deploy`
 
 ## Creation of modules and components
 
