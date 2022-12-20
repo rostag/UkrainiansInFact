@@ -11,7 +11,7 @@
       <a mat-list-item [routerLink]="['/tasks']" *ngIf="auth.isLoggedIn">Задачі</a>
       <a mat-list-item [routerLink]="['/main/whats-next']">Наступні кроки</a>
       <a mat-list-item [routerLink]="['/auth/users']" *ngIf="auth.userIsAdmin">Особи</a>
-      <a mat-list-item href="/hi" color="warn">Діяти!</a>
+      <!-- a mat-list-item href="/hi" color="warn">Діяти!</a -->
       <a mat-list-item><ng-template lazyComponent> </ng-template></a>
     </mat-nav-list>
   </mat-sidenav>
